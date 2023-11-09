@@ -12,4 +12,4 @@
 
 ## Run with Docker Hub
 
-`sudo docker run -d -p 80:80 --name django-recycling danielgara/sasvar`
+`sudo docker run -d -p 80:80 --name sasvar danielgara/sasvar`
