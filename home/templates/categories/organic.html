@@ -1,0 +1,20 @@
+{% extends 'base.html' %} 
+{% block content %}
+{% load static %}
+<div class="p-3">
+  <div class="container mb-3">
+    <div class="row mt-3">
+      <div class="col-md-6 col-lg-8 col-xl-6 mx-auto mb-4">
+        <b>Orgánicos</b>
+        <hr />
+        <p class="font-13 rc-footer-font">En la caneca verde debes depositar todos los residuos 
+            de comida -excepto los huesos-, residuos de jardinería y palitos
+            de madera.</p>
+      </div>
+      <div class="col-md-6 col-lg-8 col-xl-6 mx-auto mb-4 text-center">
+        <img src="{% static 'images/categories/c4.png' %}" class="max-width-100" alt="c4" />
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %} 

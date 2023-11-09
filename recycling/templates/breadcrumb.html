@@ -7,7 +7,7 @@
         {% elif forloop.last %}
           <span class="rc-breadcrumb-item">{{ item.name }}</span>
         {% else %}
-          <span><a href="{% url item.route %}">{{ item.name }}</a></span>
+          <span class="rc-breadcrumb-item"><a href="{% url item.route %}">{{ item.name }}</a></span>
         {% endif %}
       {% endfor %}
     </div>

@@ -2,6 +2,15 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+.rc-no-a{
+    text-decoration: none !important;
+    color: #000;
+}
+
+.img-max100 {
+    max-width: 100%;
+}
+
 .rc-header-top{
     background-color: #6AB43E;
 }
@@ -92,6 +101,11 @@ body {
 .rc-breadcrumb a, .rc-breadcrumb-item a {
     color: var(--bs-body-color) !important;
     text-decoration: none !important;
+}
+
+.title-categories{
+    font-size: 18px;
+    padding-right: 5px;
 }
 
 /*

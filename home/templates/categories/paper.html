@@ -1,0 +1,19 @@
+{% extends 'base.html' %} 
+{% block content %}
+{% load static %}
+<div class="p-3">
+  <div class="container mb-3">
+    <div class="row mt-3">
+      <div class="col-md-6 col-lg-8 col-xl-6 mx-auto mb-4">
+        <b>Papel y cartón limpios</b>
+        <hr />
+        <p class="font-13 rc-footer-font">Puede que encuentres una o dos canecas blancas. Si hay dos, 
+            una de ellas es para que deposites papel y cartón limpios. Pueden estar arrugados.</p>
+      </div>
+      <div class="col-md-6 col-lg-8 col-xl-6 mx-auto mb-4 text-center">
+        <img src="{% static 'images/categories/c1.png' %}" class="max-width-100" alt="c1" />
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %} 
