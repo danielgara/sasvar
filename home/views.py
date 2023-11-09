@@ -2,8 +2,15 @@ from django.shortcuts import render
 
 
 def index(request):
-    return render(request, 'index.html')
+    viewData = {}
+    viewData["breadcrumb"] = False
+    return render(request, 'index.html', {"viewData": viewData})
 
 
 def about(request):
-    return render(request, 'about.html')
+    viewData = {}
+    viewData["breadcrumbItems"] = [
+        {"name":"Inicio", "route":"home.index"},
+        {"name":"Acerca", "route":"home.about"},
+    ]
+    return render(request, 'about.html', {"viewData": viewData})
