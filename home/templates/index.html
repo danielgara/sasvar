@@ -8,32 +8,42 @@
   </div>
 </header>
 
-<div class="p-3 mt-3">
-  <div class="container mb-3">
+<div class="p-3">
+  <div class="container mt-5">
     <div class="row text-center">
-      <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-        <img src="{% static 'images/ecology.png' %}" alt="ecology" />
-        <p class="grid-index">Eco System</p>
-        <p>Harmony in Diversity: Nurturing Our Fragile Ecosystems.</p>
-        <p><button type="button" class="btn btn-success">Read more</button></p>
+      <div class="col-md-5 col-lg-5 col-xl-5 col-xxl-5 mx-auto mb-3">
+        <a style="text-decoration: none;" href="{% url 'home.categories' %}">
+          <div class="shadow-lg p-3 mb-5 bg-white rounded">
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-7 col-sm-7 col-md-7">
+                  <b class="title-categories text-start rc-no-a">Categorías</b><br /><br />
+                  <p class="rc-no-a">Conoce la clasificación general de los residuos</p>
+                </div>
+                <div class="col-5 col-sm-5 col-md-5">
+                  <img src="{% static 'images/trash.png' %}" height="auto" class="img-max100" alt="trash" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
       </div>
-      <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-        <img src="{% static 'images/logo.png' %}" alt="logo" />
-        <p class="grid-index">Recycling</p>
-        <p>Reduce, Reuse, Recycle: For a Sustainable Future.</p>
-        <p><button type="button" class="btn btn-success">Read more</button></p>
-      </div>
-      <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-        <img src="{% static 'images/water.png' %}" alt="water" />
-        <p class="grid-index">Save Water</p>
-        <p>Every drop counts: Conserve water, sustain life.</p>
-        <p><button type="button" class="btn btn-success">Read more</button></p>
-      </div>
-      <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-        <img src="{% static 'images/secure.png' %}" alt="secure" />
-        <p class="grid-index">Save Forests</p>
-        <p>Protecting forests, preserving life for generations to come.</p>
-        <p><button type="button" class="btn btn-success">Read more</button></p>
+      <div class="col-md-5 col-lg-5 col-xl-5 col-xxl-5 mx-auto mb-3">
+        <a style="text-decoration: none;" href="{% url 'home.categories' %}">
+          <div class="shadow-lg p-3 mb-5 bg-white rounded">
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-7 col-sm-7 col-md-7">
+                  <b class="title-categories text-start rc-no-a">Escáner</b><br /><br />
+                  <p class="rc-no-a">Descubre dónde debes depositar tu residuo</p>
+                </div>
+                <div class="col-5 col-sm-5 col-md-5">
+                  <img src="{% static 'images/scanner.png' %}" height="auto" class="img-max100" alt="scanner" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   </div>
