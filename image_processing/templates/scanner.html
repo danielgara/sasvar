@@ -2,6 +2,7 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/camera.css' %}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="{% static 'js/camera.js' %}" crossorigin="anonymous"></script>
 <div class="p-3">
   <div class="container mb-3">
@@ -17,7 +18,7 @@
         <div class="camera">
           <video id="video">Video no disponible.</video>
           <div class="camera-btn">
-            <button id="startbutton" class="btn btn-dark">Tomar foto</button>
+            <button id="startbutton" onclick="takepicture();" class="btn btn-dark">Tomar foto</button>
           </div>
         </div>
       </div>
@@ -35,9 +36,30 @@
         <div class="output">
           <img id="photo" alt="La foto aparecerá en este espacio." />
           <div class="camera-btn mt-2">
-            <button id="scanbutton" class="btn btn-dark">Escanear foto</button>
+            <button id="scanbutton" onclick="scanpicture()" class="btn btn-dark">Escanear foto</button>
           </div>
         </div>
+      </div>
+      <div id="scanspinner" class="d-flex justify-content-center d-none">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="scanmodal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Escaneo Completo</h5>
+      </div>
+      <div class="modal-body">
+        <p>Tu foto parece ser de categoría: <b id="scanresponse"></b></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" onclick="closemodal()" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
