@@ -6,7 +6,7 @@
 
 ## Run with Docker
 
-`sudo docker build -t django-app .`
+`sudo docker build --build-arg API_KEY=YOUR_API_KEY --build-arg IP_SERVER=YOUR_IP_SERVER -t django-app .`
 
 `sudo docker container run -d --name django-docker -p 80:80 django-app`
 
