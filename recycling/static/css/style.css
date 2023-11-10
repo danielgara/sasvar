@@ -11,6 +11,11 @@ body {
     max-width: 100%;
 }
 
+.img-max-home {
+    max-width: 100%;
+    max-height: 182px;
+}
+
 .rc-header-top{
     background-color: #6AB43E;
 }
