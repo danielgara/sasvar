@@ -110,12 +110,12 @@ function takepicture() {
   }
 }
 
-function scanpicture() {
+function scanpicture(api_key, ip_server) {
   $('#scanspinner').removeClass('d-none');
-  serverURL = ""
+  serverURL = ip_server
   photoTaken = document.getElementById("photo");
   imageData = photoTaken.getAttribute("src");
-  apikey = ""
+  apikey = api_key
   $.ajax({
     type: "POST",
     url:serverURL,

@@ -19,7 +19,7 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASS
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag danielgara/sasvar:latest
+      run: docker build . --file Dockerfile --build-arg API_KEY=${{ secrets.API_KEY }} --build-arg IP_SERVER=${{ secrets.IP_SERVER }} --tag danielgara/sasvar:latest
       
     - name: Docker Push
       run: docker push danielgara/sasvar

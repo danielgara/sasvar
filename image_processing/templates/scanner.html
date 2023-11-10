@@ -36,7 +36,7 @@
         <div class="output">
           <img id="photo" alt="La foto aparecerá en este espacio." />
           <div class="camera-btn mt-2">
-            <button id="scanbutton" onclick="scanpicture()" class="btn btn-dark">Escanear foto</button>
+            <button id="scanbutton" onclick='scanpicture("{{ viewData.api_key }}","{{ viewData.ip_server }}")' class="btn btn-dark">Escanear foto</button>
           </div>
         </div>
       </div>
