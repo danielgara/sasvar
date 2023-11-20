@@ -42,7 +42,10 @@ function startup() {
   photo = document.getElementById("photo");
   startbutton = document.getElementById("startbutton");
 
+  let constraints = { video: true, audio: false };
+
   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    alert("hola");
     constraints = {
       video: {
         facingMode: { exact: "environment" } // Request the rear camera
@@ -51,7 +54,7 @@ function startup() {
   }
 
   navigator.mediaDevices
-    .getUserMedia({ video: true, audio: false })
+    .getUserMedia(constraints)
     .then((stream) => {
       video.srcObject = stream;
       video.play();
