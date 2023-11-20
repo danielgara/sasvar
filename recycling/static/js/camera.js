@@ -42,6 +42,14 @@ function startup() {
   photo = document.getElementById("photo");
   startbutton = document.getElementById("startbutton");
 
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    constraints = {
+      video: {
+        facingMode: { exact: "environment" } // Request the rear camera
+      }
+    };
+  }
+
   navigator.mediaDevices
     .getUserMedia({ video: true, audio: false })
     .then((stream) => {
