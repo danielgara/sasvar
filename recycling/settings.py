@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'image_processing',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 IP_SERVER = config('IP_SERVER', default='')
 API_KEY = config('API_KEY', default='')
+
+AUTH_USER_MODEL = "accounts.User"
