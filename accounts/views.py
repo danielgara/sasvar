@@ -3,8 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import redirect
 from .forms import UserCreateForm
-from .models import User, Ranking
+from .models import User, Ranking, Code, UserHistory
 from django.db import IntegrityError
+from datetime import datetime
 
 
 @login_required
@@ -30,6 +31,12 @@ def custom_login(request):
             return render(request, 'login.html', {"viewData": viewData})
         else:
             login(request, user)
+            next_route = request.GET.get('next')
+            if next_route:
+                try:
+                    return redirect(next_route)
+                except:
+                    pass
             return redirect('home.index')
 
 
@@ -118,3 +125,51 @@ def rankings(request):
     viewData["user_ranking_name"] = user_ranking.name
 
     return render(request, 'accounts/rankings.html', {"viewData": viewData})
+
+
+@login_required
+def redemption(request, entered_code):
+    viewData = {}
+    viewData["title"] = "Redención de puntos"
+    viewData["breadcrumbItems"] = [
+        {"name": "Inicio", "route": "home.index"},
+        {"name": "Mi Cuenta", "route": "accounts.index"},
+        {"name": "Redención de puntos", "route": "accounts.redemption"},
+    ]
+
+    try:
+        code = Code.objects.get(random_code=entered_code)
+        if code.used_by_user:
+            viewData["error"] = "El código ya ha sido redimido previamente."
+        else:
+            code.used_by_user = True
+            code.user = request.user
+            code.redemption_date = datetime.now()
+            code.save()
+
+            UserHistory.objects.create(
+                type_of_activity='QR_SCAN',
+                accumulated_points=5,
+                user=request.user
+            )
+
+            request.user.experience_points += 5
+            request.user.save()
+            viewData["success"] = "El código ha sido redimido con éxito."
+    except Code.DoesNotExist:
+        viewData["error"] = "El código no existe."
+
+    return render(request, 'accounts/redemption.html', {"viewData": viewData})
+
+
+@login_required
+def stats(request):
+    viewData = {}
+    viewData["title"] = "Mis estadísticas"
+    viewData["breadcrumbItems"] = [
+        {"name": "Inicio", "route": "home.index"},
+        {"name": "Mi Cuenta", "route": "accounts.index"},
+        {"name": "Estadísticas", "route": "accounts.stats"},
+    ]
+    viewData["user_history_entries"] = UserHistory.objects.filter(user=request.user)
+    return render(request, 'accounts/stats.html', {"viewData": viewData})

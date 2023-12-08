@@ -7,5 +7,7 @@ urlpatterns = [
     path('registro', views.signup, name='accounts.signup'),
     path('perfil', views.profile, name='accounts.profile'),
     path('divisiones', views.rankings, name='accounts.rankings'),
+    path('redimir/<str:entered_code>', views.redemption, name='accounts.redemption'),
+    path('estadisticas', views.stats, name='accounts.stats'),
     path('', views.index, name='accounts.index'),
 ]

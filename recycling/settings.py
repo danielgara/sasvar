@@ -119,7 +119,7 @@ API_KEY = config('API_KEY', default='')
 
 AUTH_USER_MODEL = "accounts.User"
 
-LOGIN_URL = '/cuentas/iniciar-sesion'
+LOGIN_URL = '/mi-cuenta/iniciar-sesion'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/uploads/'
