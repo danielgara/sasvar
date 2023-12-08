@@ -79,11 +79,11 @@ def profile(request):
         return redirect('accounts.profile')
 
     viewData = {}
-    viewData["title"] = "Mi Perfil"
+    viewData["title"] = "Perfil"
     viewData["breadcrumbItems"] = [
         {"name": "Inicio", "route": "home.index"},
-        {"name": "Cuentas", "route": "accounts.index"},
-        {"name": "Mi Perfil", "route": "accounts.profile"},
+        {"name": "Mi Cuenta", "route": "accounts.index"},
+        {"name": "Perfil", "route": "accounts.profile"},
     ]
     viewData["user"] = request.user
     user_points = request.user.experience_points
@@ -95,9 +95,26 @@ def profile(request):
 @login_required
 def index(request):
     viewData = {}
-    viewData["title"] = "Cuentas"
+    viewData["title"] = "Mi cuenta"
     viewData["breadcrumbItems"] = [
         {"name": "Inicio", "route": "home.index"},
-        {"name": "Cuentas", "route": "accounts.index"},
+        {"name": "Mi Cuenta", "route": "accounts.index"},
     ]
     return render(request, 'accounts/index.html', {"viewData": viewData})
+
+
+@login_required
+def rankings(request):
+    viewData = {}
+    viewData["title"] = "Divisiones"
+    viewData["breadcrumbItems"] = [
+        {"name": "Inicio", "route": "home.index"},
+        {"name": "Mi Cuenta", "route": "accounts.index"},
+        {"name": "Divisiones", "route": "accounts.rankings"},
+    ]
+    viewData["rankings"] = Ranking.objects.order_by('-level')
+    user_points = request.user.experience_points
+    user_ranking = Ranking.objects.filter(from_points__lte=user_points, to_points__gte=user_points).first()
+    viewData["user_ranking_name"] = user_ranking.name
+
+    return render(request, 'accounts/rankings.html', {"viewData": viewData})

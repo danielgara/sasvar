@@ -121,6 +121,10 @@ body {
     width: 150px;
 }
 
+.bg-turquoise{
+    background-color: mediumturquoise;
+}
+
 /*
 .bg-body-tertiary {
     --bs-bg-opacity: 1;

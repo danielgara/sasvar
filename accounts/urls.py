@@ -6,5 +6,6 @@ urlpatterns = [
     path('iniciar-sesion', views.custom_login, name='accounts.login'),
     path('registro', views.signup, name='accounts.signup'),
     path('perfil', views.profile, name='accounts.profile'),
+    path('divisiones', views.rankings, name='accounts.rankings'),
     path('', views.index, name='accounts.index'),
 ]
