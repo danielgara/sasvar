@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.9
+FROM python:3.12
 
 ARG API_KEY
 ENV API_KEY=$API_KEY
