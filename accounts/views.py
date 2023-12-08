@@ -21,7 +21,7 @@ def custom_login(request):
         {"name": "Iniciar Sesión", "route": "accounts.login"},
     ]
     if request.method == 'GET':
-        return render(request, 'login.html', {"viewData": viewData})
+        return render(request, 'accounts/login.html', {"viewData": viewData})
     else:
         user = authenticate(request, username=request.POST['username'],
                             password=request.POST['password'])
@@ -43,7 +43,7 @@ def signup(request):
 
     if request.method == 'GET':
         viewData["form"] = UserCreateForm()
-        return render(request, 'signup.html', {"viewData": viewData})
+        return render(request, 'accounts/signup.html', {"viewData": viewData})
     else:
         form = UserCreateForm(request.POST)
         if form.is_valid():
@@ -68,7 +68,7 @@ def signup(request):
             viewData["error"] = error_list
 
         viewData["form"] = form
-        return render(request, 'signup.html', {"viewData": viewData})
+        return render(request, 'accounts/signup.html', {"viewData": viewData})
 
 
 @login_required
@@ -82,10 +82,22 @@ def profile(request):
     viewData["title"] = "Mi Perfil"
     viewData["breadcrumbItems"] = [
         {"name": "Inicio", "route": "home.index"},
+        {"name": "Cuentas", "route": "accounts.index"},
         {"name": "Mi Perfil", "route": "accounts.profile"},
     ]
     viewData["user"] = request.user
     user_points = request.user.experience_points
     user_ranking = Ranking.objects.filter(from_points__lte=user_points, to_points__gte=user_points).first()
     viewData["ranking"] = user_ranking
-    return render(request, 'profile.html', {"viewData": viewData})
+    return render(request, 'accounts/profile.html', {"viewData": viewData})
+
+
+@login_required
+def index(request):
+    viewData = {}
+    viewData["title"] = "Cuentas"
+    viewData["breadcrumbItems"] = [
+        {"name": "Inicio", "route": "home.index"},
+        {"name": "Cuentas", "route": "accounts.index"},
+    ]
+    return render(request, 'accounts/index.html', {"viewData": viewData})

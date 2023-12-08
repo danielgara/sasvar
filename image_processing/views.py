@@ -11,4 +11,4 @@ def index(request):
     ]
     viewData["api_key"] = settings.API_KEY
     viewData["ip_server"] = settings.IP_SERVER
-    return render(request, 'scanner.html', {"viewData": viewData})
+    return render(request, 'image_processing/scanner.html', {"viewData": viewData})

@@ -32,7 +32,7 @@
             <a class="nav-link" href="{% url 'scanner.index' %}">ESCANEO</a>
             <div class="vr bg-white mx-2 d-none d-lg-block"></div>
             {% if user.is_authenticated %}
-              <a class="nav-link" href="{% url 'accounts.profile' %}">PERFIL</a>
+              <a class="nav-link" href="{% url 'accounts.index' %}">CUENTA</a>
               <a class="nav-link" href="{% url 'accounts.logout' %}">SALIR ({{ user.username }})</a>
             {% else %}
               <a class="nav-link" href="{% url 'accounts.login' %}">INICIAR SESIÓN</a>

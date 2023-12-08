@@ -5,7 +5,7 @@ def index(request):
     viewData = {}
     viewData["title"] = "SASVAR"
     viewData["breadcrumb"] = False
-    return render(request, 'index.html', {"viewData": viewData})
+    return render(request, 'home/index.html', {"viewData": viewData})
 
 
 def about(request):
@@ -15,7 +15,7 @@ def about(request):
         {"name": "Inicio", "route": "home.index"},
         {"name": "Acerca", "route": "home.about"},
     ]
-    return render(request, 'about.html', {"viewData": viewData})
+    return render(request, 'home/about.html', {"viewData": viewData})
 
 
 def categories(request):
@@ -25,7 +25,7 @@ def categories(request):
         {"name": "Inicio", "route": "home.index"},
         {"name": "Categorías", "route": "home.categories"},
     ]
-    return render(request, 'categories/index.html', {"viewData": viewData})
+    return render(request, 'home/categories/index.html', {"viewData": viewData})
 
 
 def c1(request):
@@ -36,7 +36,7 @@ def c1(request):
         {"name": "Categorías", "route": "home.categories"},
         {"name": "Papel y cartón limpios", "route": "home.categories.c1"},
     ]
-    return render(request, 'categories/paper.html', {"viewData": viewData})
+    return render(request, 'home/categories/paper.html', {"viewData": viewData})
 
 
 def c2(request):
@@ -47,7 +47,7 @@ def c2(request):
         {"name": "Categorías", "route": "home.categories"},
         {"name": "Empaques y envoltorios", "route": "home.categories.c2"},
     ]
-    return render(request, 'categories/pack.html', {"viewData": viewData})
+    return render(request, 'home/categories/pack.html', {"viewData": viewData})
 
 
 def c3(request):
@@ -58,7 +58,7 @@ def c3(request):
         {"name": "Categorías", "route": "home.categories"},
         {"name": "Residuos no aprovechables", "route": "home.categories.c3"},
     ]
-    return render(request, 'categories/not-usable.html', {"viewData": viewData})
+    return render(request, 'home/categories/not-usable.html', {"viewData": viewData})
 
 
 def c4(request):
@@ -69,7 +69,7 @@ def c4(request):
         {"name": "Categorías", "route": "home.categories"},
         {"name": "Orgánicos", "route": "home.categories.c4"},
     ]
-    return render(request, 'categories/organic.html', {"viewData": viewData})
+    return render(request, 'home/categories/organic.html', {"viewData": viewData})
 
 
 def experience(request):
@@ -79,4 +79,4 @@ def experience(request):
         {"name": "Inicio", "route": "home.index"},
         {"name": "Registro de Experiencia", "route": "home.experience"},
     ]
-    return render(request, 'experience.html', {"viewData": viewData})
+    return render(request, 'home/experience.html', {"viewData": viewData})
