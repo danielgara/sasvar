@@ -113,6 +113,10 @@ body {
     padding-right: 5px;
 }
 
+.errorlist{
+    display: none;
+}
+
 /*
 .bg-body-tertiary {
     --bs-bg-opacity: 1;
