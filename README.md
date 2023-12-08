@@ -29,4 +29,4 @@ API_KEY=YOUR_API_KEY
 
 1. Ejecuta el siguiente comando correr el proyecto en localhost.
 
-`sudo docker run -d -p 80:80 --name sasvar danielgara/sasvar`
+`sudo docker run -d -p 80:8000 --name sasvar danielgara/sasvar`

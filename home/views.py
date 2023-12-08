@@ -70,3 +70,13 @@ def c4(request):
         {"name": "Orgánicos", "route": "home.categories.c4"},
     ]
     return render(request, 'categories/organic.html', {"viewData": viewData})
+
+
+def experience(request):
+    viewData = {}
+    viewData["title"] = "Registro de Experiencia"
+    viewData["breadcrumbItems"] = [
+        {"name": "Inicio", "route": "home.index"},
+        {"name": "Registro de Experiencia", "route": "home.experience"},
+    ]
+    return render(request, 'experience.html', {"viewData": viewData})
