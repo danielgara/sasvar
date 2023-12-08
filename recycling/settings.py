@@ -118,3 +118,5 @@ IP_SERVER = config('IP_SERVER', default='')
 API_KEY = config('API_KEY', default='')
 
 AUTH_USER_MODEL = "accounts.User"
+
+LOGIN_URL = '/cuentas/iniciar-sesion'
