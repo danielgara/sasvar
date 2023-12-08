@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import redirect
 from .forms import UserCreateForm
-from .models import User
+from .models import User, Ranking
 from django.db import IntegrityError
 
 
@@ -69,3 +69,23 @@ def signup(request):
 
         viewData["form"] = form
         return render(request, 'signup.html', {"viewData": viewData})
+
+
+@login_required
+def profile(request):
+    if request.method == 'POST' and request.FILES.get('profile_pic'):
+        request.user.profile_picture = request.FILES.get('profile_pic')
+        request.user.save()
+        return redirect('accounts.profile')
+
+    viewData = {}
+    viewData["title"] = "Mi Perfil"
+    viewData["breadcrumbItems"] = [
+        {"name": "Inicio", "route": "home.index"},
+        {"name": "Mi Perfil", "route": "accounts.profile"},
+    ]
+    viewData["user"] = request.user
+    user_points = request.user.experience_points
+    user_ranking = Ranking.objects.filter(from_points__lte=user_points, to_points__gte=user_points).first()
+    viewData["ranking"] = user_ranking
+    return render(request, 'profile.html', {"viewData": viewData})

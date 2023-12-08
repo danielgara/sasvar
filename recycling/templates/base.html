@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />  
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
   </head>
@@ -30,6 +31,7 @@
             <a class="nav-link" href="{% url 'scanner.index' %}">ESCANEO</a>
             <div class="vr bg-white mx-2 d-none d-lg-block"></div>
             {% if user.is_authenticated %}
+              <a class="nav-link" href="{% url 'accounts.profile' %}">PERFIL</a>
               <a class="nav-link" href="{% url 'accounts.logout' %}">SALIR ({{ user.username }})</a>
             {% else %}
               <a class="nav-link" href="{% url 'accounts.login' %}">INICIAR SESIÓN</a>
