@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User
+from .models import User, Ranking
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 
 
@@ -24,3 +24,6 @@ class UserAdmin(DjangoUserAdmin):
         elif db_field.name == 'experience_points':
             formfield.label = 'Puntos de experiencia'
         return formfield
+
+
+admin.site.register(Ranking)
