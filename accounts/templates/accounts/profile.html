@@ -62,7 +62,9 @@
                 <p class="mb-0">División actual</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0 fw-bold">{{ viewData.ranking.name }}</p>
+                <p class="text-muted mb-0 fw-bold">
+                  <a class="text-decoration-none" href="{% url 'accounts.rankings' %}">{{ viewData.ranking.name }}</a>
+                </p>
               </div>
             </div>
           </div>

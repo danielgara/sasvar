@@ -122,7 +122,12 @@ def rankings(request):
     viewData["rankings"] = Ranking.objects.order_by('-level')
     user_points = request.user.experience_points
     user_ranking = Ranking.objects.filter(from_points__lte=user_points, to_points__gte=user_points).first()
+    pending_points = (user_ranking.to_points - user_points) + 1
+    progress_percentage = 100 * (1 - (pending_points / (user_ranking.to_points + 1 - user_ranking.from_points)))
+    viewData["user_points"] = user_points
     viewData["user_ranking_name"] = user_ranking.name
+    viewData["user_pending_points"] = pending_points
+    viewData["user_progress_percentage"] = round(progress_percentage)
 
     return render(request, 'accounts/rankings.html', {"viewData": viewData})
 
