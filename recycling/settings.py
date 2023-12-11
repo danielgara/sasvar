@@ -123,3 +123,5 @@ LOGIN_URL = '/mi-cuenta/iniciar-sesion'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/uploads/'
+
+CSRF_TRUSTED_ORIGINS = ['https://*.sasvar.co']
