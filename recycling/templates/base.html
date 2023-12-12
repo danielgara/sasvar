@@ -25,18 +25,18 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav ms-auto">
-            <a class="nav-link" href="{% url 'home.about' %}">ACERCA</a>
-            <a class="nav-link" href="{% url 'home.categories' %}">CATEGORÍAS</a>
-            <a class="nav-link" href="{% url 'home.experience' %}">EXPERIENCIA</a>
-            <a class="nav-link" href="{% url 'scanner.index' %}">ESCANEO</a>
+          <div class="navbar-nav ms-auto navbar-ml">
+            <a class="nav-link" href="{% url 'home.about' %}">Acerca</a>
+            <a class="nav-link" href="{% url 'home.categories' %}">Categorías</a>
+            <a class="nav-link" href="{% url 'home.experience' %}">Experiencia</a>
+            <a class="nav-link sv-mr" href="{% url 'scanner.index' %}">Escaneo</a>
             <div class="vr bg-white mx-2 d-none d-lg-block"></div>
             {% if user.is_authenticated %}
-              <a class="nav-link" href="{% url 'accounts.index' %}">MI CUENTA</a>
-              <a class="nav-link" href="{% url 'accounts.logout' %}">SALIR ({{ user.username }})</a>
+              <a class="btn btn-primary btn-sv btn-sv-mt" href="{% url 'accounts.index' %}">Mi Cuenta</a>
+              <a class="btn btn-primary btn-sv-secondary btn-svs-mt" href="{% url 'accounts.logout' %}">Cerrar Sesión</a>
             {% else %}
-              <a class="nav-link" href="{% url 'accounts.login' %}">INICIAR SESIÓN</a>
-              <a class="nav-link" href="{% url 'accounts.signup' %}">REGISTRO</a>
+              <a class="btn btn-primary btn-sv btn-sv-mt" href="{% url 'accounts.login' %}">Iniciar Sesión</a>
+              <a class="btn btn-primary btn-sv-secondary btn-svs-mt" href="{% url 'accounts.signup' %}">Registro</a>
             {% endif %}
           </div>
         </div>
@@ -49,14 +49,16 @@
     {% include 'breadcrumb.html' %}
     {% endif %}
 
-    {% block content %}
-    {% endblock content %}
+    <div class="sv-blue">
+      {% block content %}
+      {% endblock content %}
+    </div>
 
     <!-- Footer -->
     <section class="p-3 rc-footer d-none d-md-block">
       <div class="container">
         <div class="row mt-3 text-white">
-          <div class="col-md-6 col-lg-8 col-xl-6 mx-auto mb-4">
+          <div class="col-md-6 col-lg-6 col-xl-6 mx-auto mb-4">
             <b>SASVAR</b>
             <hr />
             <p class="font-13 rc-footer-font">¡Presentamos nuestra innovadora aplicación de reciclaje! Nuestra
@@ -64,14 +66,14 @@
               conveniente. Con una interfaz fácil de usar, simplifica el proceso de eliminación de basura.</p>
           </div>
       
-          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
             <b>ENLACES</b>
             <hr />
             <p class="font-13 rc-footer-font"><a class="nav-link" href="{% url 'home.about' %}">Acerca</a></p>
             <p class="font-13 rc-footer-font"><a class="nav-link" href="{% url 'home.categories' %}">Categorías</a></p>
             <p class="font-13 rc-footer-font"><a class="nav-link" href="{% url 'scanner.index' %}">Escaneo</a></p>
           </div>
-          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
             <b>CONTACTO</b>
             <hr />
             <p class="font-13 rc-footer-font"><i class="fas fa-home me-2"></i> Medellín, Antioquia, CO</p>

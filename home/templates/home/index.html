@@ -1,26 +1,47 @@
 {% extends 'base.html' %} 
 {% block content %}
 {% load static %}
-<header class="masthead bg-index text-white text-center py-4 d-none d-md-block">
-  <div class="container d-flex align-items-center flex-column pt-2">
-    <h2>Salva el Mundo!</h2>
-    <p>Recicla y acumula puntos!</p>
+<header class="masthead bg-index text-white text-center">
+  <div class="container d-flex flex-column">
+    <div class="row">
+      <div class="col-md-6 text-start p-5 sv-p4">
+        <img src="{% static 'images/home/logo-type-1.png' %}" class="mb-4" height="100px" alt="logo" />
+        <p class="fw-bold">Bienvenido a SASVAR</p>
+        <p class="d-block d-lg-none">Un proyecto con el fin de <span class="fw-bold">asistirte durante
+          el proceso de separación de residuos</span>, enseñandote
+          a reciclar de la manera correcta.
+        </p>
+        <p class="d-none d-lg-block">Un proyecto con el fin de <span class="fw-bold">asistirte durante<br />
+          el proceso de separación de residuos</span>,<br /> enseñandote
+          a reciclar de la manera correcta.
+        </p>
+        <a class="btn btn-primary btn-sv rounded-pill mt-2 w-140" href="{% url 'home.about' %}">Aprende más</a>
+      </div>
+      <div class="col-md-6 d-none d-md-block bg-landing">
+      </div>
+    </div>
   </div>
 </header>
 
-<div class="p-3">
-  <div class="container mt-5">
+<div class="p-3 pb-0">
+  <div class="container mt-2">
     <div class="row text-center">
-      <div class="col-md-5 col-lg-5 col-xl-5 col-xxl-5 mx-auto mb-3">
+      <div class="col-md-12 mx-auto mb-4 fs-4">¿Qué quieres <span class="fw-bold">hacer</span> hoy?</div>
+    </div>
+
+    <div class="row text-center">
+      <div class="col-md-6 col-lg-4 col-xl-4 col-xxl-4 mx-auto">
         <a style="text-decoration: none;" href="{% url 'home.categories' %}">
-          <div class="shadow-lg p-3 mb-5 bg-white rounded">
+          <div class="shadow-lg p-3 mb-5 bg-white rounded sv-br-20">
             <div class="container">
               <div class="row align-items-center">
-                <div class="col-7 col-sm-7 col-md-7">
+                <div class="col-8 col-sm-8 col-md-9 col-lg-8 col-xl-9 col-xxl-8 text-start">
                   <b class="title-categories text-start rc-no-a">Categorías</b><br /><br />
-                  <p class="rc-no-a">Conoce la clasificación general de los residuos</p>
+                  <p class="rc-no-a">Conoce sobre las categorías de 
+                    <span class="fw-bold">clasificación de residuos</span>.
+                  </p>
                 </div>
-                <div class="col-5 col-sm-5 col-md-5">
+                <div class="col-4 col-sm-4 col-md-3 col-lg-4 col-xl-3 col-xxl-4">
                   <img src="{% static 'images/trash.png' %}" height="auto" class="img-max-home" alt="trash" />
                 </div>
               </div>
@@ -28,16 +49,36 @@
           </div>
         </a>
       </div>
-      <div class="col-md-5 col-lg-5 col-xl-5 col-xxl-5 mx-auto mb-3">
+      <div class="col-md-6 col-lg-4 col-xl-4 col-xxl-4 mx-auto">
         <a style="text-decoration: none;" href="{% url 'scanner.index' %}">
-          <div class="shadow-lg p-3 mb-5 bg-white rounded">
+          <div class="shadow-lg p-3 mb-5 bg-white rounded sv-br-20">
             <div class="container">
               <div class="row align-items-center">
-                <div class="col-7 col-sm-7 col-md-7">
+                <div class="col-8 col-sm-8 col-md-8 text-start">
                   <b class="title-categories text-start rc-no-a">Escáner</b><br /><br />
-                  <p class="rc-no-a">Descubre dónde debes depositar tu residuo</p>
+                  <p class="rc-no-a">Usa tu cámara y descubre <span class="fw-bold">dónde debes
+                    depositar tu residuo.</span></p>
                 </div>
-                <div class="col-5 col-sm-5 col-md-5">
+                <div class="col-4 col-sm-4 col-md-4">
+                  <img src="{% static 'images/scanner-1.png' %}" height="auto" class="img-max-home" alt="scanner" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6 col-lg-4 col-xl-4 col-xxl-4 mx-auto">
+        <a style="text-decoration: none;" href="{% url 'scanner.index' %}">
+          <div class="shadow-lg p-3 mb-5 bg-white rounded sv-br-20">
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-8 col-sm-8 col-md-8 text-start">
+                  <b class="title-categories text-start rc-no-a">Mapa</b><br /><br />
+                  <p class="rc-no-a"><span class="fw-bold">Ubica en el mapa los puntos ecológicos</span>
+                    más cercanos a ti.
+                  </p>
+                </div>
+                <div class="col-4 col-sm-4 col-md-4">
                   <img src="{% static 'images/scanner.png' %}" height="auto" class="img-max-home" alt="scanner" />
                 </div>
               </div>
