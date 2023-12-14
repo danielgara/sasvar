@@ -152,7 +152,6 @@ body {
 }
 
 /* Navbar custom */
-
 .bg-dark {
     background-color: #313334 !important;
 }
@@ -233,9 +232,9 @@ body {
     align-items: center;
     justify-content: center;
 }
+/* Navbar custom */
 
 /* Home */
-
 .home-sec-1:hover{
     background-color: #6CC4AB!important;
 }
@@ -247,19 +246,19 @@ body {
 .home-sec-3:hover{
     background-color: #96CA4E!important;
 }
-
 /* Home */
 
-/*
-.btn-sv{
-    background-color: #CCEBF4 !important;
-    color: #313334;
-    border-radius: 20px;
-    border: 1px solid #CCEBF4;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}*/
+/* Signup */
+.bg-sv-black{
+    background-color: #313334;
+}
 
-/* Navbar custom */
+.bg-sv-black b, .bg-sv-black p{
+    color: white;
+}
+
+.sv-sg-fs-11{
+    font-size: 11px;
+    font-style: italic;
+}
+/* Signup */
