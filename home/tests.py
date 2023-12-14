@@ -7,7 +7,7 @@ class HomeTest(TestCase):
     def test_index_page(self):
         response = self.client.get(reverse('home.index'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Salva el Mundo!")
+        self.assertContains(response, "Bienvenido a SASVAR")
 
     def test_about_page(self):
         response = self.client.get(reverse('home.about'))
