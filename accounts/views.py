@@ -28,7 +28,7 @@ def custom_login(request):
                             password=request.POST['password'])
         if user is None:
             viewData["error"] = 'El nombre de usuario o la contraseña no son correctos.'
-            return render(request, 'login.html', {"viewData": viewData})
+            return render(request, 'accounts/login.html', {"viewData": viewData})
         else:
             login(request, user)
             next_route = request.GET.get('next')
