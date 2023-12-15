@@ -8,6 +8,9 @@ class UserCreateForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super(UserCreateForm, self).__init__(*args, **kwargs)
+        self.label_suffix = ''
+        self.fields['email'].label = 'Correo electrónico'
+        self.fields['password2'].label = 'Confirma tu contraseña'
         for fieldname in ['username', 'password1', 'password2', 'email']:
             self.fields[fieldname].help_text = None
             self.fields[fieldname].widget.attrs.update({'class': 'form-control'})

@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 <div class="p-3">
   <div class="container">
     <div class="row mt-3">
       <div class="col-md-12 col-lg-12 col-xl-12 mx-auto">
         <div class="container">
           <div class="row justify-content-center">
-            <div class="col-md-8">
-              <div class="card shadow-lg p-3 mb-4 bg-white rounded border-0">
+            <div class="col-md-6">
+              <div class="card shadow-lg p-3 mb-4 bg-sv-black rounded border-0">
                 <div class="card-body">
+                  <b class="title-categories text-start rc-no-a">Registro</b><br /><br />
+                  <p class="sv-sg-fs-11">Completa el registro para acceder a todos nuestros servicios, acumular puntos y acceder a tus
+                    estadísticas.
+                  </p>
                   {% if viewData.error %}
                   <div class="alert alert-danger mt-3" role="alert">
                     <ul class="mb-0">
@@ -21,13 +26,20 @@
                   <form method="POST">
                     {% csrf_token %}
                     {{ viewData.form.as_p }}
-                    <button type="submit" class="btn btn-primary">
-                      Registrarse
-                    </button>
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary btn-sv btn-sv-mt d-inline-flex">
+                        Registrarse
+                      </button>
+                    </div>
                   </form>
                 </div>
               </div>
             </div>
+
+            <div class="col-md-6">
+              <img src="{% static 'images/signup/banner.jpeg' %}" class="img-fluid" alt="Responsive image">
+            </div>
+
           </div>
         </div>
       </div>
