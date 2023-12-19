@@ -170,6 +170,7 @@ def redemption(request, entered_pattern):
 
                 request.user.experience_points += gained_points
                 request.user.save()
+                viewData["gained_points"] = gained_points
                 viewData["success"] = "El código ha sido redimido con éxito."
         else:
             viewData["error"] = "Código inválido."

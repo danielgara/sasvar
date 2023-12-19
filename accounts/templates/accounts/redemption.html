@@ -19,7 +19,7 @@
                     {{ viewData.success }}
                   </div>
                   <p class="card-text">
-                    Felicidades has sumado <span class="fw-bold">5</span> EXP!!!
+                    Felicidades has sumado <span class="fw-bold">{{ viewData.gained_points }}</span> EXP!!!
                   </p>
                   <p class="card-text">
                     Visita tus <a href="{% url 'accounts.stats' %}">estadísticas</a> para mayor información.
