@@ -54,10 +54,6 @@ body {
     color: #fff;
 }
 
-.font-13 {
-    font-size: 13px;
-}
-
 .rc-footer-font {
     color: #7F7F7F;
 }
@@ -152,11 +148,13 @@ body {
 }
 
 /* General */
-
 .sv-border-20{
     border-radius: 20px !important;
 }
 
+.font-13 {
+    font-size: 13px;
+}
 /* General */
 
 /* Navbar custom */
@@ -305,3 +303,43 @@ body {
     font-style: italic;
 }
 /* Signup */
+
+/* Carrousel */
+.sv-carousel-item{
+    padding-left: 45px;
+    padding-right: 45px;
+}
+
+.carousel-control-next, .carousel-control-prev {
+    width: 5% !important;
+}
+
+.car-1{
+    background-color: #E59535!important;
+}
+
+.car-2{
+    background-color: #6CC4AB!important;
+}
+
+.car-3{
+    background-color: #96CA4E!important;
+}
+
+.car-4{
+    background-color: #313334!important;
+}
+
+.car-4 p{
+    color: #FFF;
+}
+
+.car-5{
+    background-color: #FBDC3C!important;
+}
+
+.sv-car{
+    margin-left: -15px;
+    margin-right: -15px;
+}
+/* Carrousel */
