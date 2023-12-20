@@ -151,6 +151,14 @@ body {
     vertical-align: middle !important;
 }
 
+/* General */
+
+.sv-border-20{
+    border-radius: 20px !important;
+}
+
+/* General */
+
 /* Navbar custom */
 .bg-dark {
     background-color: #313334 !important;
