@@ -252,6 +252,10 @@ body {
     border: 1px solid #CCEBF4 !important;
     font-weight: bold;
 }
+
+.nav-link:hover{
+    text-decoration: underline;
+}
 /* Navbar custom */
 
 /* Home */
