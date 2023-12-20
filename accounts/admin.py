@@ -2,6 +2,9 @@ from django.contrib import admin
 from .models import User, Ranking, Code, UserHistory
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.contrib.admin import ModelAdmin
+import csv
+from django.http import HttpResponse
+from io import StringIO
 
 
 @admin.register(User)
@@ -59,6 +62,26 @@ class CodeAdmin(ModelAdmin):
         elif db_field.name == 'user':
             formfield.label = 'Usuario'
         return formfield
+
+    def get_actions(self, request):
+        actions = super(CodeAdmin, self).get_actions(request)
+        actions['download_csv'] = (CodeAdmin.custom_download_csv, 'download_csv', 'Download CSV')
+        return actions
+
+    def custom_download_csv(modeladmin, request, queryset):
+        fields = ['random_code']
+
+        f = StringIO()
+        writer = csv.writer(f)
+        writer.writerow(fields)
+
+        for obj in queryset:
+            writer.writerow([getattr(obj, field) for field in fields])
+
+        f.seek(0)
+        response = HttpResponse(f, content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="codes.csv"'
+        return response
 
 
 @admin.register(UserHistory)
