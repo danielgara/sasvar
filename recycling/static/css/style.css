@@ -155,6 +155,14 @@ body {
 .font-13 {
     font-size: 13px;
 }
+
+.font-white{
+    color:#FFF;
+}
+
+.font-24{
+    font-size: 24px;
+}
 /* General */
 
 /* Navbar custom */
@@ -302,8 +310,8 @@ body {
     color: white;
 }
 
-.sv-sg-fs-11{
-    font-size: 11px;
+.sv-sg-fs-14{
+    font-size: 14px;
     font-style: italic;
 }
 /* Signup */

@@ -43,16 +43,15 @@
       </div>
     </nav>
     <!-- Navbar -->
-    {% if viewData.breadcrumb is False %}
-    <!-- Not show breadcrumb -->
-    {% else %}
+    
     {% include 'breadcrumb.html' %}
-    {% endif %}
 
     <div class="sv-blue">
       {% block content %}
       {% endblock content %}
     </div>
+
+    {% include 'cookieconsent.html' %}
 
     <!-- Footer -->
     <section class="p-3 rc-footer d-none d-md-block">

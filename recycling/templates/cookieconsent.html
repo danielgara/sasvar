@@ -1,0 +1,26 @@
+<div id="cookieConsentPopup" class="cookie-consent" style="display:none">
+  <div class="fixed-bottom p-4">
+    <div class="bg-dark text-white w-100 mw-100 border sv-border-20">
+      <div class="p-4 d-flex flex-column">
+      <p class="font-13">Usamos cookies para mejorar tu experiencia en SASVAR. Consulta más en nuestro Centro de Privacidad.</p>
+      <div class="ml-auto">
+        <button class="btn btn-light font-13" onclick="acceptCookies()">Aceptar</button>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function acceptCookies() {
+    document.getElementById("cookieConsentPopup").style.display = "none";
+    document.cookie = "cookies_accepted=true";
+  }
+
+  window.onload = function () {
+    var acceptedCookies = document.cookie.split(';').some((item) => item.trim().startsWith('cookies_accepted='));
+    if (!acceptedCookies) {
+      document.getElementById("cookieConsentPopup").style.display = "block";
+    }
+  }
+</script>

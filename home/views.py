@@ -4,7 +4,6 @@ from django.shortcuts import render
 def index(request):
     viewData = {}
     viewData["title"] = "SASVAR"
-    viewData["breadcrumb"] = False
     return render(request, 'home/index.html', {"viewData": viewData})
 
 

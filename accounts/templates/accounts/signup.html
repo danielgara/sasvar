@@ -20,10 +20,10 @@
                                 <img src="{% static 'images/home/sec-1.png' %}" height="auto" class="img-max-home" alt="aprende" />
                               </div>
                               <div class="col-8 col-sm-8 col-md-8 text-center">
-                                <p class="title-categories rc-no-a">
+                                <p class="title-categories rc-no-a font-white">
                                   <span class="fw-bolder">Aprende sobre el manejo de residuos</span>
                                 </p>
-                                <p class="rc-no-a mb-0">
+                                <p class="rc-no-a mb-0 font-white">
                                   <span class="font-13">Revisa tu <span class="fw-bolder">historial de disposiciones y tu porcentaje de aciertos.</span>
                                   Descubre qué conocimientos debes reforzar. Además, puedes ver tu historial de consumos con base en los productos has desechado.</span>
                                 </p>
@@ -44,10 +44,10 @@
                                 <img src="{% static 'images/home/sec-2.png' %}" height="auto" class="img-max-home" alt="aprende" />
                               </div>
                               <div class="col-8 col-sm-8 col-md-8 text-center">
-                                <p class="title-categories rc-no-a">
+                                <p class="title-categories rc-no-a font-white">
                                   <span class="fw-bolder">Recibe asistencia para separar tus residuos</span>
                                 </p>
-                                <p class="rc-no-a mb-0">
+                                <p class="rc-no-a mb-0 font-white">
                                   <span class="font-13">Utiliza la cámara de tu teléfono para <span class="fw-bolder">escanear un residuo</span> 
                                   y conocer dónde debes depositarlo.
                                 </p>
@@ -68,10 +68,10 @@
                                 <img src="{% static 'images/home/sec-3.png' %}" height="auto" class="img-max-home" alt="aprende" />
                               </div>
                               <div class="col-8 col-sm-8 col-md-8 text-center">
-                                <p class="title-categories rc-no-a">
+                                <p class="title-categories rc-no-a font-white">
                                   <span class="fw-bolder">Encuentra puntos ecológicos cercanos</span>
                                 </p>
-                                <p class="rc-no-a mb-0">
+                                <p class="rc-no-a mb-0 font-white">
                                   <span class="font-13">Ubica en el mapa los <span class="fw-bolder">puntos SASVAR</span>
                                   más convenientes para ti.</span>
                                 </p>
@@ -117,10 +117,10 @@
                                 <img src="{% static 'images/home/sec-5.png' %}" height="auto" class="img-max-home" alt="aprende" />
                               </div>
                               <div class="col-8 col-sm-8 col-md-8 text-center">
-                                <p class="title-categories rc-no-a">
+                                <p class="title-categories rc-no-a font-white">
                                   <span class="fw-bolder">Conoce tus estadísticas de desecho</span>
                                 </p>
-                                <p class="rc-no-a mb-0">
+                                <p class="rc-no-a mb-0 font-white">
                                   <span class="font-13">Descubre información de interés sobre aspectos a tener en 
                                     cuenta a la hora de separar residuos.</span>
                                 </p>
@@ -150,8 +150,8 @@
             <div class="col-md-8">
               <div class="card shadow-lg p-3 mb-4 bg-sv-black rounded border-0 sv-border-20">
                 <div class="card-body">
-                  <b class="title-categories text-start rc-no-a">Registro</b><br /><br />
-                  <p class="sv-sg-fs-11">Completa el registro para acceder <span class="fw-bold">a todos nuestros
+                  <b class="title-categories text-start rc-no-a font-24">Registro</b><br /><br />
+                  <p class="sv-sg-fs-14">Completa el registro para acceder <span class="fw-bold">a todos nuestros
                       servicios, acumular puntos y acceder a tus
                       estadísticas.</span>
                   </p>
@@ -164,9 +164,12 @@
                     </ul>
                   </div>
                   {% endif %}
-                  <form method="POST">
+                  <form method="POST" onsubmit="return validateForm()">
                     {% csrf_token %}
                     {{ viewData.form.as_p }}
+                    <p>
+                      <input type="checkbox" id="checkbox" name="terms"> Autorizo el tratamiento de mis datos.
+                    </p>
                     <div class="text-center">
                       <button type="submit" class="btn btn-primary btn-sv btn-sv-mt d-inline-flex">
                         Registrarse
@@ -182,4 +185,14 @@
     </div>
   </div>
 </div>
+
+<script>
+  function validateForm() {
+    var checkBox = document.getElementById("checkbox");
+    if (!checkBox.checked) {
+      alert("Por favor acepte el tratamiento de los datos.");
+      return false;
+    }
+  }
+</script>
 {% endblock content %}
