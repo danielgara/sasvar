@@ -132,5 +132,5 @@ EMAIL_USE_TLS = False
 EMAIL_PORT = 465
 EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
-DEFAULT_FROM_EMAIL = 'Sasvar <noreply@test.sasvar.co>'
+DEFAULT_FROM_EMAIL = 'sasvar.project@gmail.com'
 EMAIL_USE_SSL = True
