@@ -13,12 +13,15 @@
 
 <script>
   function acceptCookies() {
+    let now = new Date();
     document.getElementById("cookieConsentPopup").style.display = "none";
-    document.cookie = "cookies_accepted=true";
+    let futureDate = new Date(now.getFullYear() + 10, now.getMonth(), now.getDate());
+    let expires = "expires=" + futureDate.toUTCString();
+    document.cookie = "cookies_accepted=true;"+ expires + ";path=/";
   }
 
   window.onload = function () {
-    var acceptedCookies = document.cookie.split(';').some((item) => item.trim().startsWith('cookies_accepted='));
+    let acceptedCookies = document.cookie.split(';').some((item) => item.trim().startsWith('cookies_accepted='));
     if (!acceptedCookies) {
       document.getElementById("cookieConsentPopup").style.display = "block";
     }
