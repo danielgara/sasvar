@@ -7,7 +7,8 @@ urlpatterns = [
         "resetear-password/",
         auth_views.PasswordResetView.as_view(
             template_name="accounts/reset-password.html"
-        )
+        ),
+        name='password_change'
     ),
     path(
         "resetear-password-completado/",
@@ -15,6 +16,13 @@ urlpatterns = [
             template_name="accounts/reset-password-done.html"
         ),
         name='password_reset_done'
+    ),
+    path(
+        "resetear-password-finalizado/",
+        auth_views.PasswordResetCompleteView.as_view(
+            template_name="accounts/reset-password-finalize.html"
+        ),
+        name='password_reset_complete'
     ),
     path(
         'resetear-password-confirmacion/<uidb64>/<token>/',

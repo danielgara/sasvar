@@ -164,7 +164,7 @@
                     </ul>
                   </div>
                   {% endif %}
-                  <form method="POST" onsubmit="return validateForm()">
+                  <form method="POST" class="sv-register" onsubmit="return validateForm()">
                     {% csrf_token %}
                     {{ viewData.form.as_p }}
                     <p>
