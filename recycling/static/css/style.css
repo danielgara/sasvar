@@ -18,6 +18,10 @@ body {
     max-width: 100%;
 }
 
+.img-maxw300 {
+    max-height: 300px;
+}
+
 .img-max-home {
     max-width: 100%;
     max-height: 142px;
@@ -355,3 +359,39 @@ body {
     margin-right: -15px;
 }
 /* Carrousel */
+
+/* Learn */
+.learn-top {
+    background-color: #313334!important;
+}
+
+.learn-top-l1 {
+    background-color: #E59535!important;
+}
+
+.font-learn13 {
+    font-size: 13px;
+}
+
+@media (min-width: 992px) {
+    .font-learn13 {
+        font-size: 15px !important;
+    }
+}
+
+.l-orange:hover {
+    background-color: #E59535!important;
+}
+
+.title-level {
+    font-size: 22px;
+    background: rgba(128,128,128,.3);
+    border: 2px rgba(128,128,128,.3);
+    border-radius: 14px;
+    padding: 6px;
+}
+
+.learn-green {
+    background-color: #96CA4E!important;
+}
+/* Learn */

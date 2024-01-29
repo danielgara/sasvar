@@ -17,25 +17,25 @@ def about(request):
     return render(request, 'home/about.html', {"viewData": viewData})
 
 
-def categories(request):
+def learn(request):
     viewData = {}
-    viewData["title"] = "Categorías"
+    viewData["title"] = "Aprende"
     viewData["breadcrumbItems"] = [
         {"name": "Inicio", "route": "home.index"},
-        {"name": "Categorías", "route": "home.categories"},
+        {"name": "Aprende", "route": "home.aprende"},
     ]
-    return render(request, 'home/categories/index.html', {"viewData": viewData})
+    return render(request, 'home/learn/index.html', {"viewData": viewData})
 
 
-def c1(request):
+def l1(request):
     viewData = {}
-    viewData["title"] = "Papel y cartón limpios"
+    viewData["title"] = "Nivel 1"
     viewData["breadcrumbItems"] = [
         {"name": "Inicio", "route": "home.index"},
-        {"name": "Categorías", "route": "home.categories"},
-        {"name": "Papel y cartón limpios", "route": "home.categories.c1"},
+        {"name": "Aprende", "route": "home.learn"},
+        {"name": "Nivel 1", "route": "home.learn.l1"},
     ]
-    return render(request, 'home/categories/paper.html', {"viewData": viewData})
+    return render(request, 'home/learn/l1.html', {"viewData": viewData})
 
 
 def c2(request):
