@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="p-3">
+  <div class="container mt-2">
+    <div class="row text-center">
+      <div class="col-12 mx-auto">
+        <div class="shadow-lg p-3 learn-top-sublevel sv-br-20">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-7 col-sm-7 col-md-7 text-start">
+                <b class="title-sublevel text-start rc-no-a">Verde</b><br /> <div class="title-sublevel">Residuos<br />
+                  Orgánicos</div><br />
+                <div class="font-learn13">Aquí van los residuos <b>orgánicos biodegradables</b>
+                  los cuales pueden ser aprovechados para el compostaje o abonos.
+                </div>
+              </div>
+              <div class="col-5 col-sm-5 col-md-5">
+                <img src="{% static 'images/learn/greens.png' %}" class="img-max100 img-maxw300" alt="c1" />
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 pb-3">
+            <div class="container mt-2">
+              <div class="row text-center">
+                <div class="col-12 mx-auto">
+                  <div class="shadow-lg p-3 learn-top sv-br-20">
+                    <div class="container">
+                      <div class="row align-items-center">
+                        <div class="col-12 text-white text-center">
+                          <b>¿Qué puede ir aquí?</b><br /><br />
+                          <img src="{% static 'images/learn/group-green.png' %}" class="img-max100 img-maxw300" alt="c1" /><br /><br />
+                          <div class="font-learn13">En la caneca verde debes depositar todos los <b>residuos de comida,
+                          excepto los huesos, residuos de jardineria y palitos de madera</b>.</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="p-3">
+  <div class="container mt-4">
+    <div class="row text-center">
+      <div class="col-12 mx-auto">
+        <b>Aprende sobre otras categorias</b>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="p-3">
+  <div class="container mt-1">
+    <div class="row text-center">
+      <div class="col-md-6 mx-auto">
+        <a style="text-decoration: none;" href="{% url 'home.learn.l1.sublevel' name='blanco' %}">
+          <div class="shadow-lg p-3 mb-5 learn-top-sublevel rounded">
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-7 col-sm-7 col-md-7 text-start">
+                  <span class="title-categories rc-no-a">Residuos</span><br />
+                  <b class="title-categories rc-no-a">Reciclables</b>
+                </div>
+                <div class="col-5 col-sm-5 col-md-5">
+                  <img src="{% static 'images/learn/white.png' %}" height="125px" class="img-max100" alt="c1" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6 mx-auto">
+        <a style="text-decoration: none;" href="{% url 'home.learn.l1.sublevel' name='negro' %}">
+          <div class="shadow-lg p-3 mb-5 learn-top-sublevel rounded">
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-7 col-sm-7 col-md-7 text-start">
+                  <span class="title-categories rc-no-a">Residuos <b>No</b></span><br />
+                  <b class="title-categories rc-no-a">Aprovechables</b>
+                </div>
+                <div class="col-5 col-sm-5 col-md-5">
+                  <img src="{% static 'images/learn/black.png' %}" height="125px" class="img-max100" alt="c1" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

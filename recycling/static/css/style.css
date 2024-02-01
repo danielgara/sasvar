@@ -369,6 +369,10 @@ body {
     background-color: #E59535!important;
 }
 
+.learn-top-sublevel {
+    background-color: #FFFEF6!important;
+}
+
 .font-learn13 {
     font-size: 13px;
 }
@@ -389,6 +393,11 @@ body {
     border: 2px rgba(128,128,128,.3);
     border-radius: 14px;
     padding: 6px;
+}
+
+.title-sublevel {
+    font-size: 26px;
+    line-height: 32px;
 }
 
 .learn-green {

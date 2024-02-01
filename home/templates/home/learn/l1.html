@@ -31,49 +31,55 @@
   <div class="container mt-4">
     <div class="row text-center">
       <div class="col-md-6 col-lg-4 mx-auto">
-        <div class="shadow-lg p-3 mb-5 bg-white rounded">
-          <div class="container">
-            <div class="row align-items-top">
-              <div class="col-5 text-start pt-3">
-                <b class="title-categories rc-no-a">Blanco</b><br />
-                <span class="title-categories rc-no-a">Residuos Reciclabes</span>
-              </div>
-              <div class="col-7">
-                <img src="{% static 'images/learn/white.png' %}" height="280px" class="img-max100" alt="l1" />
+        <a style="text-decoration: none;" href="{% url 'home.learn.l1.sublevel' name='blanco' %}">
+          <div class="shadow-lg p-3 mb-5 bg-white rounded">
+            <div class="container">
+              <div class="row align-items-top">
+                <div class="col-5 text-start pt-3">
+                  <b class="title-categories rc-no-a">Blanco</b><br />
+                  <span class="title-categories rc-no-a">Residuos Reciclabes</span>
+                </div>
+                <div class="col-7">
+                  <img src="{% static 'images/learn/white.png' %}" height="280px" class="img-max100" alt="l1" />
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </a>
       </div>
       <div class="col-md-6 col-lg-4 mx-auto">
-        <div class="shadow-lg p-3 mb-5 learn-top rounded">
-          <div class="container">
-            <div class="row align-items-top">
-              <div class="col-5 text-start pt-3">
-                <b class="title-categories text-white rc-no-a">Negro</b><br />
-                <span class="title-categories text-white rc-no-a">Residuos No Aprovechables</span>
-              </div>
-              <div class="col-7">
-                <img src="{% static 'images/learn/black.png' %}" height="280px" class="img-max100" alt="l2" />
+        <a style="text-decoration: none;" href="{% url 'home.learn.l1.sublevel' name='negro' %}">
+          <div class="shadow-lg p-3 mb-5 learn-top rounded">
+            <div class="container">
+              <div class="row align-items-top">
+                <div class="col-5 text-start pt-3">
+                  <b class="title-categories text-white rc-no-a">Negro</b><br />
+                  <span class="title-categories text-white rc-no-a">Residuos No Aprovechables</span>
+                </div>
+                <div class="col-7">
+                  <img src="{% static 'images/learn/black.png' %}" height="280px" class="img-max100" alt="l2" />
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </a>
       </div>
       <div class="col-md-6 col-lg-4 mx-auto">
-        <div class="shadow-lg p-3 mb-5 learn-green rounded">
-          <div class="container">
-            <div class="row align-items-top">
-              <div class="col-5 text-start pt-3">
-                <b class="title-categories rc-no-a">Verde</b><br />
-                <span class="title-categories rc-no-a">Residuos Orgánicos</span>
-              </div>
-              <div class="col-7">
-                <img src="{% static 'images/learn/green.png' %}" height="280px" class="img-max100" alt="l3" />
+        <a style="text-decoration: none;" href="{% url 'home.learn.l1.sublevel' name='verde' %}">
+          <div class="shadow-lg p-3 mb-5 learn-green rounded">
+            <div class="container">
+              <div class="row align-items-top">
+                <div class="col-5 text-start pt-3">
+                  <b class="title-categories rc-no-a">Verde</b><br />
+                  <span class="title-categories rc-no-a">Residuos Orgánicos</span>
+                </div>
+                <div class="col-7">
+                  <img src="{% static 'images/learn/green.png' %}" height="280px" class="img-max100" alt="l3" />
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
