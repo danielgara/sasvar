@@ -7,8 +7,5 @@ urlpatterns = [
     path('aprende', views.learn, name='home.learn'),
     path('aprende/nivel-1', views.l1, name='home.learn.l1'),
     path('aprende/nivel-1/<str:name>', views.l1_sublevel, name='home.learn.l1.sublevel'),
-    path('categorias/empaques-envoltorios', views.c2, name='home.categories.c2'),
-    path('categorias/residuos-no-aprovechables', views.c3, name='home.categories.c3'),
-    path('categorias/organicos', views.c4, name='home.categories.c4'),
     path('experiencia', views.experience, name='home.experience'),
 ]

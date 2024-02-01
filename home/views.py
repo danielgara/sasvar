@@ -47,39 +47,7 @@ def l1_sublevel(request, name):
         {"name": "Nivel 1", "route": "home.learn.l1"},
         {"name": name.capitalize(), "route": "home.learn.l1.sublevel", "params": {"name": name}},
     ]
-    return render(request, 'home/learn/l1/'+name+'.html', {"viewData": viewData})
-
-def c2(request):
-    viewData = {}
-    viewData["title"] = "Empaques y envoltorios"
-    viewData["breadcrumbItems"] = [
-        {"name": "Inicio", "route": "home.index"},
-        {"name": "Categorías", "route": "home.categories"},
-        {"name": "Empaques y envoltorios", "route": "home.categories.c2"},
-    ]
-    return render(request, 'home/categories/pack.html', {"viewData": viewData})
-
-
-def c3(request):
-    viewData = {}
-    viewData["title"] = "Residuos no aprovechables"
-    viewData["breadcrumbItems"] = [
-        {"name": "Inicio", "route": "home.index"},
-        {"name": "Categorías", "route": "home.categories"},
-        {"name": "Residuos no aprovechables", "route": "home.categories.c3"},
-    ]
-    return render(request, 'home/categories/not-usable.html', {"viewData": viewData})
-
-
-def c4(request):
-    viewData = {}
-    viewData["title"] = "Orgánicos"
-    viewData["breadcrumbItems"] = [
-        {"name": "Inicio", "route": "home.index"},
-        {"name": "Categorías", "route": "home.categories"},
-        {"name": "Orgánicos", "route": "home.categories.c4"},
-    ]
-    return render(request, 'home/categories/organic.html', {"viewData": viewData})
+    return render(request, 'home/learn/l1/' + name + '.html', {"viewData": viewData})
 
 
 def experience(request):
