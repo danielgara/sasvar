@@ -116,6 +116,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 IP_SERVER = config('IP_SERVER', default='')
 API_KEY = config('API_KEY', default='')
+CRYPTO_KEY = config('CRYPTO_KEY', default='')
 
 AUTH_USER_MODEL = "accounts.User"
 

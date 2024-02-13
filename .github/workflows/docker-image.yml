@@ -18,7 +18,7 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASS
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --build-arg API_KEY=${{ secrets.API_KEY }} --build-arg IP_SERVER=${{ secrets.IP_SERVER }} --build-arg EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }} --build-arg EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }} --tag danielgara/sasvar:latest
+      run: docker build . --file Dockerfile --build-arg API_KEY=${{ secrets.API_KEY }} --build-arg IP_SERVER=${{ secrets.IP_SERVER }} --build-arg CRYPTO_KEY=${{ secrets.CRYPTO_KEY }} --build-arg EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }} --build-arg EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }} --tag danielgara/sasvar:latest
       
     - name: Docker Push
       run: docker push danielgara/sasvar

@@ -3,9 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import redirect
 from .forms import UserCreateForm
-from .models import User, Ranking, Code, UserHistory
+from .models import User, Ranking, UserHistory
 from django.db import IntegrityError
-from datetime import datetime
+from .utils import decrypt_message
 
 
 @login_required
@@ -133,6 +133,44 @@ def rankings(request):
 
 
 @login_required
+def redemption(request, encrypted_message):
+    viewData = {}
+    viewData["title"] = "Redención de puntos"
+    viewData["breadcrumbItems"] = [
+        {"name": "Inicio", "route": "home.index"},
+        {"name": "Mi Cuenta", "route": "accounts.index"},
+        {"name": "Redención de puntos", "route": "accounts.redemption"},
+    ]
+
+    try:
+        code = decrypt_message(encrypted_message)
+        code.user = request.user
+        code.save()
+
+        gained_points = 1
+
+        if (code.success == "1"):
+            gained_points = 5
+
+        UserHistory.objects.create(
+            type_of_activity='QR_SCAN',
+            accumulated_points=gained_points,
+            user=request.user
+        )
+
+        request.user.experience_points += gained_points
+        request.user.save()
+
+        viewData["gained_points"] = gained_points
+        viewData["success"] = "El código ha sido redimido con éxito."
+    except:
+        viewData["error"] = "Código inválido."
+
+    return render(request, 'accounts/redemption.html', {"viewData": viewData})
+
+
+"""
+@login_required
 def redemption(request, entered_pattern):
     viewData = {}
     viewData["title"] = "Redención de puntos"
@@ -178,6 +216,7 @@ def redemption(request, entered_pattern):
         viewData["error"] = "El código no existe."
 
     return render(request, 'accounts/redemption.html', {"viewData": viewData})
+"""
 
 
 @login_required

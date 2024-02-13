@@ -21,13 +21,16 @@ class Ranking(models.Model):
 
 class Code(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
-    random_code = models.CharField(max_length=10, unique=True)
-    used_by_user = models.BooleanField(default=False)
+    id_physical_location = models.CharField(max_length=100)
+    consecutive = models.PositiveIntegerField()
+    id_container = models.PositiveIntegerField()
+    id_model = models.CharField(max_length=100)
+    material = models.PositiveIntegerField()
+    success = models.IntegerField(choices=[(0, 'Failure'), (1, 'Success')])
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
-    redemption_date = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
-        return str(self.id) + ' - ' + str(self.random_code) + ' - ' + str(self.used_by_user)
+        return str(self.id) + ' - ' + str(self.user.username) + ' - ' + str(self.id_physical_location)
 
 
 class UserHistory(models.Model):

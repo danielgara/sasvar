@@ -134,6 +134,11 @@ body {
     padding-right: 5px;
 }
 
+.title-categories-2{
+    font-size: 25px;
+    padding-right: 5px;
+}
+
 .sv-register .errorlist{
     display: none;
 }
