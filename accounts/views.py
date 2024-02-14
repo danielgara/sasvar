@@ -143,9 +143,11 @@ def redemption(request, encrypted_message):
     ]
 
     try:
+        print("hola1")
         code = decrypt_message(encrypted_message)
         code.user = request.user
         code.save()
+        print("hola7")
 
         gained_points = 1
 
@@ -164,6 +166,7 @@ def redemption(request, encrypted_message):
         viewData["gained_points"] = gained_points
         viewData["success"] = "El código ha sido redimido con éxito."
     except:
+        print("hola8")
         viewData["error"] = "Código inválido."
 
     return render(request, 'accounts/redemption.html', {"viewData": viewData})
