@@ -143,11 +143,9 @@ def redemption(request, encrypted_message):
     ]
 
     try:
-        print("hola1")
         code = decrypt_message(encrypted_message)
         code.user = request.user
         code.save()
-        print("hola7")
 
         gained_points = 1
 
@@ -166,60 +164,9 @@ def redemption(request, encrypted_message):
         viewData["gained_points"] = gained_points
         viewData["success"] = "El código ha sido redimido con éxito."
     except:
-        print("hola8")
         viewData["error"] = "Código inválido."
 
     return render(request, 'accounts/redemption.html', {"viewData": viewData})
-
-
-"""
-@login_required
-def redemption(request, entered_pattern):
-    viewData = {}
-    viewData["title"] = "Redención de puntos"
-    viewData["breadcrumbItems"] = [
-        {"name": "Inicio", "route": "home.index"},
-        {"name": "Mi Cuenta", "route": "accounts.index"},
-        {"name": "Redención de puntos", "route": "accounts.redemption"},
-    ]
-
-    try:
-        split_pattern = entered_pattern.split('-')
-        if len(split_pattern) >= 4:
-            entered_code = split_pattern[0]
-            code = Code.objects.get(random_code=entered_code)
-            if code.used_by_user:
-                viewData["error"] = "El código ya ha sido redimido previamente."
-            else:
-                code.used_by_user = True
-                code.user = request.user
-                code.redemption_date = datetime.now()
-                code.save()
-
-                answer = split_pattern[1]
-
-                if (answer == "1"):
-                    gained_points = 5
-                else:
-                    gained_points = 1
-
-                UserHistory.objects.create(
-                    type_of_activity='QR_SCAN',
-                    accumulated_points=gained_points,
-                    user=request.user
-                )
-
-                request.user.experience_points += gained_points
-                request.user.save()
-                viewData["gained_points"] = gained_points
-                viewData["success"] = "El código ha sido redimido con éxito."
-        else:
-            viewData["error"] = "Código inválido."
-    except Code.DoesNotExist:
-        viewData["error"] = "El código no existe."
-
-    return render(request, 'accounts/redemption.html', {"viewData": viewData})
-"""
 
 
 @login_required
