@@ -374,6 +374,14 @@ body {
     background-color: #E59535!important;
 }
 
+.learn-top-l2 {
+    background-color: #F9E6BA!important;
+}
+
+.learn-top-white {
+    background-color: #FFFFFF!important;
+}
+
 .learn-top-sublevel {
     background-color: #FFFEF6!important;
 }
@@ -400,6 +408,14 @@ body {
     padding: 6px;
 }
 
+.title-level-l2 {
+    font-size: 22px;
+    background: rgba(229,149,53);
+    border: 2px rgba(229,149,53);
+    border-radius: 14px;
+    padding: 6px;
+}
+
 .title-sublevel {
     font-size: 26px;
     line-height: 32px;
@@ -407,5 +423,9 @@ body {
 
 .learn-green {
     background-color: #96CA4E!important;
+}
+
+.font-orange {
+    color: #E59535!important;
 }
 /* Learn */

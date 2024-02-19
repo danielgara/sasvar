@@ -38,6 +38,17 @@ def l1(request):
     return render(request, 'home/learn/l1.html', {"viewData": viewData})
 
 
+def l2(request):
+    viewData = {}
+    viewData["title"] = "Nivel 2"
+    viewData["breadcrumbItems"] = [
+        {"name": "Inicio", "route": "home.index"},
+        {"name": "Aprende", "route": "home.learn"},
+        {"name": "Nivel 2", "route": "home.learn.l2"},
+    ]
+    return render(request, 'home/learn/l2.html', {"viewData": viewData})
+
+
 def l1_sublevel(request, name):
     viewData = {}
     viewData["title"] = name.capitalize()
