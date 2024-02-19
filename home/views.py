@@ -61,6 +61,18 @@ def l1_sublevel(request, name):
     return render(request, 'home/learn/l1/' + name + '.html', {"viewData": viewData})
 
 
+def l2_sublevel(request, name):
+    viewData = {}
+    viewData["title"] = name.capitalize()
+    viewData["breadcrumbItems"] = [
+        {"name": "Inicio", "route": "home.index"},
+        {"name": "Aprende", "route": "home.learn"},
+        {"name": "Nivel 2", "route": "home.learn.l2"},
+        {"name": name.capitalize(), "route": "home.learn.l2.sublevel", "params": {"name": name}},
+    ]
+    return render(request, 'home/learn/l2/' + name + '.html', {"viewData": viewData})
+
+
 def experience(request):
     viewData = {}
     viewData["title"] = "Registro de Experiencia"
