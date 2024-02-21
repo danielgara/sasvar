@@ -49,7 +49,9 @@ function startup() {
     constraints = {
       video: {
         facingMode: { exact: "environment" } // Request the rear camera
-      }
+      },
+      width: { ideal: 1280 },
+      height: { ideal: 720 }
     };
   }
 
