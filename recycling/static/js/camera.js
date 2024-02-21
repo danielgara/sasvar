@@ -42,7 +42,6 @@ function startup() {
   canvas = document.getElementById("canvas");
   photo = document.getElementById("photo");
   startbutton = document.getElementById("startbutton");
-  prevbutton = document.getElementById("prevbutton");
 
   let constraints = { video: true, audio: false };
 
@@ -60,10 +59,8 @@ function startup() {
     .getUserMedia(constraints)
     .then((stream) => {
       video.srcObject = stream;
-      prevbutton.addEventListener('click', () => {
-        video.play();
-      });
-      //video.play();
+      video.playsInline = true;
+      video.play();
     })
     .catch((err) => {
       console.error(`An error occurred: ${err}`);
