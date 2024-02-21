@@ -121,6 +121,17 @@ function takepicture() {
   }
 }
 
+LABELS = {
+  '-1': 'Incierto',
+  '0': 'Empaque impreso',
+  '1': 'Botella',
+  '2': 'Papel',
+  '3': 'Lata de aluminio',
+  '4': 'Vaso de papel',
+  '5': 'Otros',
+  '6': 'Orgánico',
+};
+
 function scanpicture(api_key, ip_server) {
   $('#scanspinner').removeClass('d-none');
   serverURL = ip_server
@@ -136,7 +147,8 @@ function scanpicture(api_key, ip_server) {
     headers: {"x-api-key": apikey},
     success: function(response) {
       responseElement = document.getElementById("scanresponse");
-      responseElement.innerHTML = response.prediction
+      var label = LABELS.hasOwnProperty(response.prediction) ? LABELS[response.prediction] : LABELS[-1];
+      responseElement.innerHTML = label;
       $('#scanmodal').modal('show');
       $('#scanspinner').addClass('d-none');
     },
