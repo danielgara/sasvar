@@ -139,6 +139,11 @@ function scanpicture(api_key, ip_server) {
   $('#scanspinner').removeClass('d-none');
   serverURL = ip_server
   photoTaken = document.getElementById("photo");
+  mgroup = document.getElementById("m-group");
+  mbin = document.getElementById("m-bin");
+  mimg1 = document.getElementById("m-img1");
+  mimg2 = document.getElementById("m-img2");
+  mimg3 = document.getElementById("m-img3");
   imageData = photoTaken.getAttribute("src");
   apikey = api_key
   $.ajax({
@@ -151,6 +156,19 @@ function scanpicture(api_key, ip_server) {
     success: function(response) {
       responseElement = document.getElementById("scanresponse");
       var label = LABELS.hasOwnProperty(response.prediction) ? LABELS[response.prediction] : LABELS[-1];
+      if (response.prediction == '-1' || response.prediction == '5') {
+        mgroup.innerHTML = 'no aprovechables u ordinarios';
+        mbin.innerHTML = 'negra';
+        mimg1.classList.add('d-none'); mimg3.classList.add('d-none'); mimg2.classList.remove('d-none');
+      } else if (response.prediction == '6') {
+        mgroup.innerHTML = 'orgánicos';
+        mbin.innerHTML = 'verde';
+        mimg1.classList.add('d-none'); mimg2.classList.add('d-none'); mimg3.classList.remove('d-none');
+      } else {
+        mgroup.innerHTML = 'reciclables';
+        mbin.innerHTML = 'blanca';
+        mimg2.classList.add('d-none'); mimg3.classList.add('d-none'); mimg1.classList.remove('d-none');
+      }
       responseElement.innerHTML = label;
       $('#scanmodal').modal('show');
       $('#scanspinner').addClass('d-none');

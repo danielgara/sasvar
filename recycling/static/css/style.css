@@ -390,6 +390,18 @@ body {
     background-color: #242526!important;
 }
 
+.learn-top-green {
+    background-color: #6CC4AB!important;
+}
+
+.learn-top-green-light {
+    background-color: #CDE7DE!important;
+}
+
+.learn-top-blue {
+    background-color: #CCEBF4!important;
+}
+
 .font-learn13 {
     font-size: 13px;
 }
@@ -433,3 +445,15 @@ body {
     color: #E59535!important;
 }
 /* Learn */
+
+/* Scanner */
+
+.modal-header {
+    border-bottom: none !important;
+}
+
+.modal-footer {
+    border-top: none !important;
+}
+
+/* Scanner */
