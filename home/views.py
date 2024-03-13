@@ -73,6 +73,16 @@ def l2_sublevel(request, name):
     return render(request, 'home/learn/l2/' + name + '.html', {"viewData": viewData})
 
 
+def locate(request):
+    viewData = {}
+    viewData["title"] = "Encuentra un Punto Ecológico"
+    viewData["breadcrumbItems"] = [
+        {"name": "Inicio", "route": "home.index"},
+        {"name": "Encuentra un Punto Ecológico", "route": "home.locate"},
+    ]
+    return render(request, 'home/locate.html', {"viewData": viewData})
+
+
 def experience(request):
     viewData = {}
     viewData["title"] = "Registro de Experiencia"

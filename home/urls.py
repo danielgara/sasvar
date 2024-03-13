@@ -9,5 +9,6 @@ urlpatterns = [
     path('aprende/nivel-1/<str:name>', views.l1_sublevel, name='home.learn.l1.sublevel'),
     path('aprende/nivel-2', views.l2, name='home.learn.l2'),
     path('aprende/nivel-2/<str:name>', views.l2_sublevel, name='home.learn.l2.sublevel'),
+    path('encuentra', views.locate, name='home.locate'),
     path('experiencia', views.experience, name='home.experience'),
 ]

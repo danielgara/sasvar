@@ -18,6 +18,10 @@ body {
     max-width: 100%;
 }
 
+.img-maxh200 {
+    max-height: 200px;
+}
+
 .img-maxw300 {
     max-height: 300px;
 }
@@ -167,6 +171,10 @@ body {
 
 .font-white{
     color:#FFF;
+}
+
+.font-green{
+    color:#98e465;
 }
 
 .font-24{
@@ -392,6 +400,14 @@ body {
 
 .learn-top-green {
     background-color: #6CC4AB!important;
+}
+
+.learn-top-green-light2 {
+    background-color: #E4FFBF!important;
+}
+
+.learn-top-green-dark {
+    background-color: #226644!important;
 }
 
 .learn-top-green-light {
