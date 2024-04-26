@@ -155,6 +155,10 @@ body {
     background-color: mediumturquoise;
 }
 
+.bg-orange-light{
+    background-color: #FCE6B8;
+}
+
 .table-center th, .table-center td{
     text-align: center;
     vertical-align: middle !important;
@@ -174,7 +178,7 @@ body {
 }
 
 .font-green{
-    color:#98e465;
+    color:#96CA4E;
 }
 
 .font-24{
