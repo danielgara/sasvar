@@ -59,6 +59,7 @@ def l3(request):
     ]
     return render(request, 'home/learn/l3.html', {"viewData": viewData})
 
+
 def l1_sublevel(request, name):
     viewData = {}
     viewData["title"] = name.capitalize()
