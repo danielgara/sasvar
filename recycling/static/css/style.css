@@ -288,6 +288,26 @@ body {
 /* Navbar custom */
 
 /* Home */
+.home-aprende:hover{
+    background-color: #F8Cb6b!important;
+}
+
+.home-escanea:hover{
+    background-color: #6CC4Ab!important;
+}
+
+.home-encuentra:hover{
+    background-color: #5c7d2e!important;
+}
+
+.home-acumula:hover{
+    background-color: #FFEA65!important;
+}
+
+.home-revisa:hover{
+    background-color: #848484!important;
+}
+
 .home-sec-1:hover{
     background-color: #6CC4AB!important;
 }
