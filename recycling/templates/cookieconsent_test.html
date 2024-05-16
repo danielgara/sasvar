@@ -1,0 +1,31 @@
+<div id="cookieConsentPopup" class="cookie-consent" style="display:none">
+  <div class="fixed-bottom p-4">
+    <div class="bg-dark text-white w-100 mw-100 border sv-border-20">
+      <div class="p-4 d-flex flex-column">
+      <p class="font-13">Estamos mejorando nuestra aplicación actualmente, por lo que algunas funciones están en desarrollo.
+         Esto puede afectar la precisión del escáner para reconocer todos los tipos de residuos. Gracias por
+          tu comprensión mientras trabajamos en mejoras.</p>
+      <div class="ml-auto">
+        <button class="btn btn-light font-13" onclick="acceptCookies()">Aceptar</button>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function acceptCookies() {
+    let now = new Date();
+    document.getElementById("cookieConsentPopup").style.display = "none";
+    let futureDate = new Date(now.getFullYear() + 10, now.getMonth(), now.getDate());
+    let expires = "expires=" + futureDate.toUTCString();
+    document.cookie = "cookies_accepted=true;"+ expires + ";path=/";
+  }
+
+  window.onload = function () {
+    let acceptedCookies = document.cookie.split(';').some((item) => item.trim().startsWith('cookies_accepted='));
+    if (!acceptedCookies) {
+      document.getElementById("cookieConsentPopup").style.display = "block";
+    }
+  }
+</script>
