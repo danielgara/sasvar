@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'home',
     'image_processing',
     'accounts',
+    'app_test',
 ]
 
 MIDDLEWARE = [

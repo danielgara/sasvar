@@ -44,44 +44,18 @@
                 <div class="mx-auto mb-4 d-flex justify-content-center">
                   <div class="camera">
                     <video id="video">Video no disponible.</video>
+                    <img id="photo" class="mb-2" style="display: none;" alt="La foto aparecerá en este espacio." />
+                    <canvas id="canvas" style="display: none;"> </canvas>
                     <div class="camera-btn">
-                      <button id="startbutton" onclick="takepicture();" class="btn btn-dark">Tomar foto</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="p-3">
-  <div class="container mt-2">
-    <div class="row text-center">
-      <div class="col-12 mx-auto">
-          <div class="p-3 learn-top-green-light sv-br-20">
-            <div class="container">
-              <div class="row align-items-center p-3">
-                <div class="col-12 mb-4 mb-sm-0">
-                  <b class="title-level text-start text-white rc-no-a">2</b> <b>PREVISUALIZA TU IMAGEN Y ANALIZA TU RESIDUO</b>
-                </div>
-              </div>
-              <div class="row mt-3">
-                <div class="mx-auto mb-4 d-flex justify-content-center">
-                  <canvas id="canvas"> </canvas>
-                  <div class="output">
-                    <img id="photo" alt="La foto aparecerá en este espacio." />
-                    <div class="camera-btn mt-2">
+                      <button id="startbutton" onclick="takepicture();" class="btn btn-dark">Tomar foto</button>  
+                      <button id="restartbutton" style="display: none;" onclick="restartvideo();" class="btn btn-dark">Reiniciar video</button>
                       <button id="scanbutton" onclick='scanpicture("{{ viewData.api_key }}","{{ viewData.ip_server }}")' class="btn btn-dark">Analizar residuo</button>
                     </div>
-                  </div>
-                </div>
-                <div id="scanspinner" class="d-flex justify-content-center d-none">
-                  <div class="spinner-border" role="status">
-                    <span class="sr-only">Cargando...</span>
+                    <div id="scanspinner" class="d-flex justify-content-center d-none">
+                      <div class="spinner-border mb-4 mt-4" role="status">
+                        <span class="sr-only">Cargando...</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -118,4 +92,4 @@
     </div>
   </div>
 </div>
-{% endblock content %} 
+{% endblock content %}

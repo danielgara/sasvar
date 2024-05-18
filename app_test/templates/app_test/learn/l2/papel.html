@@ -1,0 +1,177 @@
+{% extends 'base_test.html' %}
+{% block content %}
+{% load static %}
+
+<div class="p-3">
+  <div class="container mt-2">
+    <div class="row text-center">
+      <div class="col-12 mx-auto">
+        <div class="shadow-lg p-3 learn-top-black sv-br-20">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-12 col-sm-7 col-md-7 text-start text-white mb-4 mb-sm-0">
+                <div class="pb-2">Tipo de Material</div>
+                <b class="title-level-l2 text-start text-white rc-no-a">Papel</b><br /><br />
+                <div class="font-learn13">El <b>papel usado se puede reciclar</b> para fabricar nuevos productos de papel. 
+                  El proceso comienza disolviendo las hojas usadas en agua y aire, lo que permite que la tinta 
+                  se separe del papel. La pulpa resultante se blanquea y si su calidad es baja se usará para hacer 
+                  cajas de cartón. Si es buena, para hacer papel para imprimir y escribir. <br /><br />
+                  Sin embargo, <b>el papel contaminado de grasa o alimentos es más difícil de reciclar</b> porque estos 
+                  agentes interfieren en el blanqueo y contamina el agua necesaria para este proceso. 
+                </div>
+              </div>
+              <div class="col-12 col-sm-5 col-md-5">
+                <img src="{% static 'images/learn/l2/banner-papel.png' %}" class="img-max100 img-maxw300" alt="c1" />
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 pb-3">
+            <div class="container mt-2">
+              <div class="row text-center">
+                <div class="col-12 mx-auto">
+                  <div class="shadow-lg p-3 learn-top-sublevel sv-br-20">
+                    <div class="container">
+                      <div class="row align-items-center p-3">
+                        <div class="col-12 col-sm-5 col-md-5 mb-4 mb-sm-0">
+                          <img src="{% static 'images/learn/l2/reciclables.png' %}" class="img-max100 img-maxw300 sv-border-20" alt="c1" />
+                        </div>
+                        <div class="col-12 col-sm-7 col-md-7 text-start">
+                          <b class="text-start rc-no-a">¿Cuándo depositar el papel en la caneca blanca?:</b><br /><br />
+                          <span class="font-learn13">Siempre y cuando estén <b>secos y libres de grasa</b>, deposita todas las hojas de impresión, 
+                          cuadernos, libretas, envoltorios y demás en el contenedor blanco. <b>No importa si están arrugadas</b>, 
+                          igualmente se pueden aprovechar. También aplica para hojas de periódico o revistas </span><br /><br />
+                          <span class="font-learn13"><b>Recuerda</b> que en los puntos ecológicos SASVAR hay un contenedor blanco específico
+                             para este tipo de residuos</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 pb-3">
+            <div class="container mt-2">
+              <div class="row text-center">
+                <div class="col-12 mx-auto">
+                  <div class="shadow-lg p-3 learn-top-sublevel sv-br-20">
+                    <div class="container">
+                      <div class="row align-items-center p-3">
+                        <div class="col-12 col-sm-7 col-md-7 text-start mb-4 mb-sm-0">
+                          <b class="text-start rc-no-a">¿Cuándo depositar papel en la caneca negra?:</b><br /><br />
+                          <span class="font-learn13">
+                            Las bolsas de papel contaminadas de alimentos, las servilletas, el papel de cocina y cualquier
+                             otro <b>papel que tenga grasa o esté mojado</b> ya no puede pasar por el proceso de reciclaje. 
+                             Este tipo de residuos deben <b>ir en la negra para evitar que los limpios no se contaminen</b>.
+                          </span><br /><br />
+                          <span class="font-learn13">
+                            Los residuos de compras funcionan con una capa química sobre la que se imprime el texto. 
+                            Esta capa no se puede reciclar y además es un contaminante para el agua. Por eso debes <b>depositar
+                             tus recibos en la caneca negra</b>. Y si puedes, evita sacarlo.
+                          </span><br /><br />
+                          <span class="font-learn13">
+                            <b>Las bolsitas de aromática</b> también tienen pulpa de papel, pero esta no se puede aprovechar 
+                            y está contaminada. Algunas personas optan por compostarlas en casa, pero algunos procesos 
+                            industriales se ven afectados si hay presencia de bolsitas. <b>Por eso también van en la caneca negra</b>.
+                          </span>
+                        </div>
+                        <div class="col-12 col-sm-5 col-md-5">
+                          <img src="{% static 'images/learn/l2/ordinarios-2.png' %}" class="img-max100 img-maxw300 sv-border-20" alt="c1" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 pb-3">
+            <div class="container mt-2">
+              <div class="row text-center">
+                <div class="col-12 mx-auto">
+                  <div class="shadow-lg p-3 learn-top-sublevel sv-br-20">
+                    <div class="container">
+                      <div class="row align-items-center p-3">
+                        <div class="col-12 col-sm-5 col-md-5 mb-4 mb-sm-0">
+                          <img src="{% static 'images/learn/l2/organicos.png' %}" class="img-max100 img-maxw300 sv-border-20" alt="c1" />
+                        </div>
+                        <div class="col-12 col-sm-7 col-md-7 text-start">
+                          <b class="text-start rc-no-a">¿Cuándo depositar papel en la caneca verde?:</b><br /><br />
+                          <span class="font-learn13">En esta caneca <b>no debes depositar papel</b>. Si bien este material es biodegradable, 
+                            es mejor no hacerlo porque nunca se sabe qué químicos pueden contaminar la tierra.  </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>    
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="p-3">
+  <div class="container mt-4">
+    <div class="row text-center">
+      <div class="col-12 mx-auto">
+        <b>Aprende sobre otras categorias</b>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="p-3">
+  <div class="container mt-4">
+    <div class="row text-center">
+      <div class="col-md-4 mx-auto">
+        <a style="text-decoration: none;" href="{% url 'app_test.learn.l2' %}">
+          <div class="shadow-lg p-3 mb-5 bg-white rounded l-orange">
+            <div class="container">
+              <div class="row align-items-top">
+                <div class="col-12 text-start p-3">
+                  <b class="title-categories rc-no-a">Cartón</b>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 mx-auto">
+        <a style="text-decoration: none;" href="{% url 'app_test.learn.l2' %}">
+          <div class="shadow-lg p-3 mb-5 bg-white rounded l-orange">
+            <div class="container">
+              <div class="row align-items-top">
+                <div class="col-12 text-start p-3">
+                  <b class="title-categories rc-no-a">Metal</b>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 mx-auto">
+        <a style="text-decoration: none;" href="{% url 'app_test.learn.l2' %}">
+          <div class="shadow-lg p-3 mb-5 bg-white rounded l-orange">
+            <div class="container">
+              <div class="row align-items-top">
+                <div class="col-12 text-start p-3">
+                  <b class="title-categories rc-no-a">Vidrio</b>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
