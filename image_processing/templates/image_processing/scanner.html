@@ -49,7 +49,7 @@
                     <div class="camera-btn">
                       <button id="startbutton" onclick="takepicture();" class="btn btn-dark">Tomar foto</button>  
                       <button id="restartbutton" style="display: none;" onclick="restartvideo();" class="btn btn-dark">Reiniciar video</button>
-                      <button id="scanbutton" onclick='scanpicture("{{ viewData.api_key }}","{{ viewData.ip_server }}")' class="btn btn-dark">Analizar residuo</button>
+                      <button id="scanbutton" style="display: none;" onclick='scanpicture("{{ viewData.api_key }}","{{ viewData.ip_server }}")' class="btn btn-dark">Analizar residuo</button>
                     </div>
                     <div id="scanspinner" class="d-flex justify-content-center d-none">
                       <div class="spinner-border mb-4 mt-4" role="status">

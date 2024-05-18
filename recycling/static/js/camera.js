@@ -7,6 +7,7 @@ let video = null;
 let canvas = null;
 let photo = null;
 let startbutton = null;
+let scanbutton = null;
 let restartbutton = null;
 
 function showViewLiveResultButton() {
@@ -30,6 +31,7 @@ function startup() {
   canvas = document.getElementById("canvas");
   photo = document.getElementById("photo");
   startbutton = document.getElementById("startbutton");
+  scanbutton = document.getElementById("scanbutton");
   restartbutton = document.getElementById("restartbutton");
 
   let constraints = { video: true, audio: false };
@@ -103,6 +105,7 @@ function takepicture() {
     video.style.display = "none";
     startbutton.style.display = "none";
     photo.style.display = "";
+    scanbutton.style.display = "";
     restartbutton.style.display = "";
 
     const data = canvas.toDataURL("image/png");
