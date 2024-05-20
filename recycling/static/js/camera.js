@@ -97,6 +97,8 @@ function restartvideo() {
 }
 
 function takepicture() {
+  let shuttersound = document.getElementById('shuttersound');
+  shuttersound.play();
   const context = canvas.getContext("2d");
   if (photo.width && photo.height) {
     canvas.width = photo.width;

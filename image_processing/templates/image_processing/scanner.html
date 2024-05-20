@@ -5,6 +5,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="{% static 'js/camera.js' %}" crossorigin="anonymous"></script>
 
+<audio id="shuttersound">
+  <source src="{% static 'audio/camera_shutter.mp3' %}" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
 
 <div class="p-3">
   <div class="container mt-2">
