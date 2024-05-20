@@ -43,6 +43,22 @@
 }
 */
 
+@media (min-width: 992px) {
+    .text-main-camera{
+        font-size: 40px;
+    }
+}
+
+#scanbutton{
+    background-color: #6CC4AB !important;
+    border-color: #6CC4AB !important;
+}
+
+#restartbutton{
+    background-color: #313334 !important;
+    border-color: #313334 !important;
+}
+
 .camera-btn {
     text-align: center;
 }
