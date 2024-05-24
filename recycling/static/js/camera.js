@@ -115,6 +115,31 @@ function takepicture() {
   } else {
     clearphoto();
   }
+
+  /*
+  var byteString = atob(photo.src.split(',')[1]);
+  var mimeString = photo.src.split(',')[0].split(':')[1].split(';')[0];
+  var ab = new ArrayBuffer(byteString.length);
+  var ia = new Uint8Array(ab);
+  for (var i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+  var photoBlob = new Blob([ab], { type: mimeString });
+
+  console.log(photoBlob);
+
+  var reader = new FileReader();
+  reader.onload = function(event) {
+    var dataURL = event.target.result;
+    var link = document.createElement('a');
+    link.href = dataURL;
+    link.download = 'photo.jpg'; // Change the filename if needed
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+  reader.readAsDataURL(photoBlob);
+  */
 }
 
 LABELS = {
@@ -132,7 +157,6 @@ function scanpicture(api_key, ip_server) {
   $('#scanspinner').removeClass('d-none');
   serverURL = ip_server
   photoTaken = document.getElementById("photo");
-  mgroup = document.getElementById("m-group");
   mbin = document.getElementById("m-bin");
   mimg1 = document.getElementById("m-img1");
   mimg2 = document.getElementById("m-img2");
@@ -150,15 +174,12 @@ function scanpicture(api_key, ip_server) {
       responseElement = document.getElementById("scanresponse");
       var label = LABELS.hasOwnProperty(response.prediction) ? LABELS[response.prediction] : LABELS[-1];
       if (response.prediction == '-1' || response.prediction == '5') {
-        mgroup.innerHTML = 'no aprovechables u ordinarios';
         mbin.innerHTML = 'negra';
         mimg1.classList.add('d-none'); mimg3.classList.add('d-none'); mimg2.classList.remove('d-none');
       } else if (response.prediction == '6') {
-        mgroup.innerHTML = 'orgánicos';
         mbin.innerHTML = 'verde';
         mimg1.classList.add('d-none'); mimg2.classList.add('d-none'); mimg3.classList.remove('d-none');
       } else {
-        mgroup.innerHTML = 'reciclables';
         mbin.innerHTML = 'blanca';
         mimg2.classList.add('d-none'); mimg3.classList.add('d-none'); mimg1.classList.remove('d-none');
       }

@@ -49,14 +49,15 @@
     }
 }
 
-#scanbutton{
-    background-color: #6CC4AB !important;
-    border-color: #6CC4AB !important;
-}
-
-#restartbutton{
+#restartbutton, #scanbutton {
     background-color: #313334 !important;
     border-color: #313334 !important;
+}
+
+#restartbutton:hover, #scanbutton:hover {
+    background-color: #CDE7DE !important;
+    color: black !important;
+    border-color: #202020 !important;
 }
 
 .camera-btn {

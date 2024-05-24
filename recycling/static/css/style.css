@@ -446,9 +446,17 @@ body {
     font-size: 13px;
 }
 
+.font-size-main {
+    font-size: 25px;
+}
+
 @media (min-width: 992px) {
     .font-learn13 {
         font-size: 15px !important;
+    }
+
+    .font-size-main {
+        font-size: 40px;
     }
 }
 
@@ -456,8 +464,15 @@ body {
     background-color: #E59535!important;
 }
 
+.title-level-no-size {
+    background: rgba(128,128,128,.3);
+    border: 2px rgba(128,128,128,.3);
+    border-radius: 14px;
+    padding: 6px;
+}
+
 .title-level {
-    font-size: 22px;
+    font-size: 25px;
     background: rgba(128,128,128,.3);
     border: 2px rgba(128,128,128,.3);
     border-radius: 14px;
