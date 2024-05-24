@@ -32,4 +32,15 @@ EMAIL_HOST_PASSWORD=YOUR_EMAIL_HOST_PASSWORD
 
 1. Ejecuta el siguiente comando correr el proyecto en localhost.
 
-`sudo docker run -d -p 80:8000 --name sasvar danielgara/sasvar`
+`sudo docker run -d -p 8000:8000 --name sasvar danielgara/sasvar`
+
+## Correr con Docker Hub y Volumenes (persistir datos de DB)
+
+1. Crea un volumen 
+
+`sudo docker volume create sasvardb`
+
+2. Ejecuta el siguiente comando correr el proyecto en localhost.
+
+`sudo docker run -v sasvardb:/code/db -d -p 8000:8000 --name sasvar danielgara/sasvar`
+
