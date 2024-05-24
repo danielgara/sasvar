@@ -26,9 +26,6 @@ COPY . /code/
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Create a volume for SQLite database
-VOLUME /code/db
-
 # Expose the port the Django app runs on
 EXPOSE 8000
 
