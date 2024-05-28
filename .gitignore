@@ -16,7 +16,7 @@ logs/
 *.log
 
 # User uploads
-# uploads/
+uploads/
 
 # Static files
 staticfiles/
