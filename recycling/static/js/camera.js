@@ -115,31 +115,6 @@ function takepicture() {
   } else {
     clearphoto();
   }
-
-  /*
-  var byteString = atob(photo.src.split(',')[1]);
-  var mimeString = photo.src.split(',')[0].split(':')[1].split(';')[0];
-  var ab = new ArrayBuffer(byteString.length);
-  var ia = new Uint8Array(ab);
-  for (var i = 0; i < byteString.length; i++) {
-    ia[i] = byteString.charCodeAt(i);
-  }
-  var photoBlob = new Blob([ab], { type: mimeString });
-
-  console.log(photoBlob);
-
-  var reader = new FileReader();
-  reader.onload = function(event) {
-    var dataURL = event.target.result;
-    var link = document.createElement('a');
-    link.href = dataURL;
-    link.download = 'photo.jpg'; // Change the filename if needed
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-  reader.readAsDataURL(photoBlob);
-  */
 }
 
 LABELS = {
@@ -153,7 +128,24 @@ LABELS = {
   '6': 'Orgánico',
 };
 
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+          }
+      }
+  }
+  return cookieValue;
+}
+
 function scanpicture(api_key, ip_server) {
+  const csrftoken = getCookie('csrftoken');
+
   $('#scanspinner').removeClass('d-none');
   serverURL = ip_server
   photoTaken = document.getElementById("photo");
@@ -184,11 +176,31 @@ function scanpicture(api_key, ip_server) {
         mimg2.classList.add('d-none'); mimg3.classList.add('d-none'); mimg1.classList.remove('d-none');
       }
       responseElement.innerHTML = label;
+
+      url_save_image = '/escaneo/guardar';
+
+      $.ajax({
+        type: "POST",
+        url: url_save_image,
+        data: JSON.stringify({'frame': imageData}),
+        crossDomain: true,
+        dataType: 'json',
+        headers: {
+          "X-CSRFToken": csrftoken
+        },
+        success: function(response) {
+          console.log(response);
+        },
+        error: function(response) {
+          alert('Error escaneando foto');
+        },
+      });
+
       $('#scanmodal').modal('show');
       $('#scanspinner').addClass('d-none');
     },
     error: function(response) {
-      alert('Error escaneando foto')
+      alert('Error escaneando foto');
     },
   });
 }
