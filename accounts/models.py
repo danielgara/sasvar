@@ -41,3 +41,20 @@ class UserHistory(models.Model):
 
     def __str__(self):
         return str(self.id) + ' - ' + str(self.user) + ' - ' + str(self.accumulated_points)
+
+
+class Waste(models.Model):
+    iteration = models.IntegerField()
+    date = models.DateTimeField()
+    name_ima_before = models.CharField(max_length=255)
+    name_ima_after = models.CharField(max_length=255)
+    mode = models.IntegerField()
+    folder = models.CharField(max_length=255)
+    res = models.IntegerField()
+    rec = models.IntegerField()
+    ecological_point = models.CharField(max_length=255)
+    model_version = models.CharField(max_length=255)
+    success = models.IntegerField()
+
+    def __str__(self):
+        return f"Iteration {self.iteration} - {self.date}"

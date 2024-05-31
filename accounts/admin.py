@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, Ranking, Code, UserHistory
+from .models import User, Ranking, Code, UserHistory, Waste
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.contrib.admin import ModelAdmin
 import csv
@@ -96,4 +96,35 @@ class UserHistoryAdmin(ModelAdmin):
             formfield.label = 'Puntos acumulados'
         elif db_field.name == 'created_at':
             formfield.label = 'Fecha de creación'
+        return formfield
+
+
+@admin.register(Waste)
+class WasteAdmin(ModelAdmin):
+    change_list_template = 'accounts/admin/waste_list.html'
+
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        formfield = super().formfield_for_dbfield(db_field, **kwargs)
+        if db_field.name == 'iteration':
+            formfield.label = 'Iteración'
+        elif db_field.name == 'date':
+            formfield.label = 'Fecha'
+        elif db_field.name == 'name_ima_before':
+            formfield.label = 'Nombre imagen antes'
+        elif db_field.name == 'name_ima_after':
+            formfield.label = 'Nombre imagen después'
+        elif db_field.name == 'mode':
+            formfield.label = 'Modo'
+        elif db_field.name == 'folder':
+            formfield.label = 'Carpeta'
+        elif db_field.name == 'res':
+            formfield.label = 'Res'
+        elif db_field.name == 'rec':
+            formfield.label = 'Rec'
+        elif db_field.name == 'ecological_point':
+            formfield.label = 'Punto ecologico'
+        elif db_field.name == 'model_version':
+            formfield.label = 'Versión del modelo'
+        elif db_field.name == 'success':
+            formfield.label = 'Éxito'
         return formfield

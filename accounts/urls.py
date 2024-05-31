@@ -39,4 +39,5 @@ urlpatterns = [
     path('redimir/<str:encrypted_message>', views.redemption, name='accounts.redemption'),
     path('estadisticas', views.stats, name='accounts.stats'),
     path('', views.index, name='accounts.index'),
+    path('cargar_json', views.upload_json, name='accounts.upload_json'),
 ]

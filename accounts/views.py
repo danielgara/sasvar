@@ -3,9 +3,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import redirect
 from .forms import UserCreateForm
-from .models import User, Ranking, UserHistory
+from .models import User, Ranking, UserHistory, Waste
 from django.db import IntegrityError
 from .utils import decrypt_message
+import json
+from datetime import datetime
 
 
 @login_required
@@ -180,3 +182,31 @@ def stats(request):
     ]
     viewData["user_history_entries"] = UserHistory.objects.filter(user=request.user)
     return render(request, 'accounts/stats.html', {"viewData": viewData})
+
+
+@login_required
+def upload_json(request):
+    if request.method == 'POST' and request.FILES.get('json_file'):
+        json_file = request.FILES['json_file']
+        try:
+            data = json.load(json_file)
+            print(data)
+            for item in data:
+                Waste.objects.create(
+                    iteration=item[0],
+                    date=datetime.strptime(item[1], '%d/%m/%Y/%H:%M:%S').strftime('%Y-%m-%d'),
+                    name_ima_before=item[2],
+                    name_ima_after=item[3],
+                    mode=item[4],
+                    folder=item[5],
+                    res=item[6],
+                    rec=item[7],
+                    ecological_point=item[8],
+                    model_version=item[9],
+                    success=item[10]
+                )
+            return redirect(request.META.get('HTTP_REFERER', '/'))
+        except json.JSONDecodeError:
+            return redirect(request.META.get('HTTP_REFERER', '/'))
+    else:
+        return redirect(request.META.get('HTTP_REFERER', '/'))
