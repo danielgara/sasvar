@@ -25,18 +25,27 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav ms-auto navbar-ml">
-            <a class="nav-link" href="{% url 'home.about' %}">Acerca</a>
+          <div class="navbar-nav ms-auto navbar-ml text-end-navbar">
             <a class="nav-link" href="{% url 'home.learn' %}">Aprende</a>
-            <a class="nav-link" href="{% url 'home.experience' %}">Experiencia</a>
-            <a class="nav-link sv-mr" href="{% url 'scanner.index' %}">Escaneo</a>
+            <a class="nav-link sv-mr" href="{% url 'scanner.index' %}">Escanea</a>
+            <a class="nav-link sv-mr" href="{% url 'home.locate' %}">Encuéntranos</a>
+            <a class="nav-link" href="{% url 'home.experience' %}">Acumula puntos</a>
+            <a class="nav-link" href="{% url 'home.about' %}">Acerca</a>
             <div class="vr bg-white mx-2 d-none d-lg-block"></div>
             {% if user.is_authenticated %}
+            <div class="parent d-flex justify-content-end">
               <a class="btn btn-primary btn-sv btn-sv-mt" href="{% url 'accounts.index' %}">Mi Cuenta</a>
+            </div>
+            <div class="parent d-flex justify-content-end">
               <a class="btn btn-primary btn-sv-secondary btn-svs-mt" href="{% url 'accounts.logout' %}">Cerrar Sesión</a>
+            </div>
             {% else %}
+            <div class="parent d-flex justify-content-end">
               <a class="btn btn-primary btn-sv btn-sv-mt" href="{% url 'accounts.login' %}">Iniciar Sesión</a>
+            </div>
+            <div class="parent d-flex justify-content-end">
               <a class="btn btn-primary btn-sv-secondary btn-svs-mt" href="{% url 'accounts.signup' %}">Registro</a>
+            </div>
             {% endif %}
           </div>
         </div>

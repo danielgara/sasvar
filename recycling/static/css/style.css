@@ -143,6 +143,11 @@ body {
     padding-right: 5px;
 }
 
+.title-categories-3{
+    font-size: 35px;
+    padding-right: 5px;
+}
+
 .sv-register .errorlist{
     display: none;
 }
@@ -238,6 +243,16 @@ body {
     .btn-svs-mt {
         margin-top: 20px;
         margin-bottom: 5px;
+    }
+
+    .text-end-navbar {
+        text-align: right;
+    }
+
+    
+    .title-categories-3{
+        font-size: 25px;
+        padding-right: 5px;
     }
 }   
 
@@ -402,8 +417,12 @@ body {
     background-color: #313334!important;
 }
 
+.learn-top-2 {
+    background-color: #242526!important;
+}
+
 .learn-top-l1 {
-    background-color: #E59535!important;
+    background-color: #FFAE29!important;
 }
 
 .learn-top-l2 {
@@ -462,6 +481,30 @@ body {
 
 .l-orange:hover {
     background-color: #E59535!important;
+}
+
+.l-orange-2 {
+    background-color: #FADA94!important;
+}
+
+.l-orange-2:hover {
+    background-color: #FFD783!important;
+}
+
+.l1-c1:hover {
+    background-color: #B4E2D8!important;
+}
+
+.l1-c2:hover {
+    background-color: #242526!important;
+}
+
+.l1-c2:hover .rc-no-a {
+    color: #FFF !important;
+}
+
+.l1-c3:hover {
+    background-color: #DBFFA9!important;
 }
 
 .title-level-no-size {
