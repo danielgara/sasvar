@@ -49,6 +49,7 @@
                     <div class="camera-btn">
                       <img id="startbutton" onclick="takepicture();" src="{% static 'images/scanner/button-takepicture.png' %}" style="max-height: 50px; cursor: pointer" />
                       <button id="restartbutton" style="display: none;" onclick="restartvideo();" class="btn btn-dark sv-br-20">Retomar foto</button>
+                      <input type="hidden" id="csrfmiddlewaretoken" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
                       <button id="scanbutton" style="display: none;" onclick='scanpicture("{{ viewData.api_key }}","{{ viewData.ip_server }}")' class="btn btn-dark sv-br-20">Analizar residuo</button>
                     </div>
                     <div id="scanspinner" class="d-flex justify-content-center d-none">
@@ -86,7 +87,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" onclick="closemodal()" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" onclick="closemodal()" class="btn btn-secondary sv-br-20" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
