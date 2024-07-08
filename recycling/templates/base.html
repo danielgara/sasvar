@@ -17,35 +17,27 @@
     <!-- Navbar -->
     <nav class="p-3 navbar navbar-dark bg-dark navbar-expand-lg bg-body-sasvar pb-3">
       <div class="container">
-        <a class="navbar-brand" href="{% url 'home.index' %}">
-          <img src="{% static 'images/logo-sasvar.png' %}" alt="logo" height="24" class="me-2" />
-        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
           aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+        <a class="navbar-brand" href="{% url 'home.index' %}">
+          <img src="{% static 'images/logo-sasvar.png' %}" alt="logo" height="24" class="me-2" />
+        </a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav ms-auto navbar-ml text-end-navbar">
-            <a class="nav-link" href="{% url 'home.learn' %}">Aprende</a>
-            <a class="nav-link sv-mr" href="{% url 'scanner.index' %}">Escanea</a>
-            <a class="nav-link sv-mr" href="{% url 'home.locate' %}">Encuéntranos</a>
+          <div class="navbar-nav ms-auto navbar-ml">
+            <a class="nav-link btn-sv-mt" href="{% url 'home.learn' %}">Aprende</a>
+            <a class="nav-link" href="{% url 'scanner.index' %}">Escanea</a>
+            <a class="nav-link" href="{% url 'home.locate' %}">Encuéntranos</a>
             <a class="nav-link" href="{% url 'home.experience' %}">Acumula puntos</a>
             <a class="nav-link" href="{% url 'home.about' %}">Acerca</a>
             <div class="vr bg-white mx-2 d-none d-lg-block"></div>
             {% if user.is_authenticated %}
-            <div class="parent d-flex justify-content-end">
-              <a class="btn btn-primary btn-sv btn-sv-mt" href="{% url 'accounts.index' %}">Mi Cuenta</a>
-            </div>
-            <div class="parent d-flex justify-content-end">
-              <a class="btn btn-primary btn-sv-secondary btn-svs-mt" href="{% url 'accounts.logout' %}">Cerrar Sesión</a>
-            </div>
+            <a class="btn btn-primary btn-sv btn-sv-mt" href="{% url 'accounts.index' %}">Mi Cuenta</a>
+            <a class="btn btn-primary btn-sv-secondary btn-svs-mt" href="{% url 'accounts.logout' %}">Cerrar Sesión</a>
             {% else %}
-            <div class="parent d-flex justify-content-end">
-              <a class="btn btn-primary btn-sv btn-sv-mt" href="{% url 'accounts.login' %}">Iniciar Sesión</a>
-            </div>
-            <div class="parent d-flex justify-content-end">
-              <a class="btn btn-primary btn-sv-secondary btn-svs-mt" href="{% url 'accounts.signup' %}">Registro</a>
-            </div>
+            <a class="btn btn-primary btn-sv btn-sv-mt" href="{% url 'accounts.login' %}">Iniciar Sesión</a>
+            <a class="btn btn-primary btn-sv-secondary btn-svs-mt" href="{% url 'accounts.signup' %}">Registro</a>
             {% endif %}
           </div>
         </div>
