@@ -1,62 +1,88 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block content %}
 {% load static %}
+
+<div class="row text-center">
+  <div class="col-12 mx-auto">
+    <div class="p-3 learn-top-yellow">
+      <div class="container">
+        <div class="row align-items-center p-3">
+          <div class="col-12 col-md-7 text-start mb-4 mb-sm-0">
+            <b class="title-level-no-size text-start rc-no-a font-size-main">Ranking</b></span><br /><br />
+            <span class="font-learn13"><b>Explora</b> nuestros niveles, cada que recolectas puntos de experiencia puedes
+              subir de nivel desbloqueando nuevos beneficios.</span>
+          </div>
+          <div class="col-12 col-md-5">
+            <img src="{% static 'images/ranking/banner.png' %}" class="img-max100 img-maxw300" alt="c1" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="p-3">
   <div class="container">
     <div class="row mt-3">
       <div class="col-md-6 col-lg-6 col-xl-6 mx-auto mb-3">
-        <b>División actual</b>
-        <hr />
-        <p class="font-13 rc-footer-font">En este momento te encuentras en la división: 
-          <span class="fw-bold">{{ viewData.user_ranking_name }}</span> con 
-          <span class="fw-bold">{{ viewData.user_points }}</span> EXP. Para subir de división, debes acumular 
-          <span class="fw-bold">{{ viewData.user_pending_points }}</span> EXP adicionales.</p>
-        <b>Progreso a la siguiente división</b>
-        <hr />
-        <p class="font-13 rc-footer-font">
-          <div class="progress" role="progressbar" aria-label="Default striped example" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
-            <div class="progress-bar progress-bar-striped" style="width: {{ viewData.user_progress_percentage }}%">{{ viewData.user_progress_percentage }}%</div>
+        <h4><b class="font-division">Tu división actual</b></h4>
+        <div class="card shadow-lg p-3 mb-4 division-bg sv-br-20 border-0">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <img src="{{ viewData.user_ranking_image.url }}" alt="" style="width: auto; height: 120px" />
+              <div class="ms-3">
+                <p class="font-division">En este momento te encuentras en la división:</p>
+                <p class="font-division"><b>{{ viewData.user_ranking_name }}<br />
+                    con {{ viewData.user_points }} exp</b></p>
+                <p class="font-division">para subir de división, debes acumular {{ viewData.user_pending_points }} exp
+                  adicionales.</p>
+              </div>
+            </div>
           </div>
+        </div>
+
+        <h4><b class="font-division">Progreso a la siguiente división</b></h4>
+        <div class="card shadow-lg p-3 mb-4 division-bg sv-br-20 border-0">
+          <div class="card-body">
+            <div class="progress" role="progressbar" aria-label="Default striped example" aria-valuenow="10"
+              aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar progress-bar-striped bg-warning"
+                style="width: {{ viewData.user_progress_percentage }}%">{{ viewData.user_progress_percentage }}%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-6 col-xl-6 mx-auto mb-3 text-start">
+        <h4><b class="font-division">Divisiones</b></h4>
+        <p class="font-division">El programa SASVAR esta dividido inicialmente en 3 divisiones, las cuales
+          te presentamos a continuación. Animate a obtener increibles beneficios acumulando puntos y subiendo de
+          división.
         </p>
-        <b>Divisiones</b>
-        <hr />
-        <p class="font-13 rc-footer-font">A continuación, se listan las diferentes divisiones disponibles en SASVAR.
-          Sube tu nivel de división acumulando puntos de experiencia.</p>
-          
-          <div class="container mt-4">
-            {% for ranking in viewData.rankings %}
-            <div class="row justify-content-center">
-              <div class="col-md-12">
-                {% if viewData.user_ranking_name == ranking.name %}
-                <div class="card shadow-lg p-3 mb-4 bg-turquoise rounded border-0">
-                {% else %}
-                <div class="card shadow-lg p-3 mb-4 bg-white rounded border-0">
-                {% endif %}
-                  <div class="card-body">
-                    <div class="d-flex align-items-center">
-                      <img src="{% static 'images/badge.png' %}"
-                        alt="" style="width: 35px; height: 45px"
-                      />
-                      <div class="ms-3">
-                        <p class="fw-bold mb-1">{{ ranking.name }}</p>
-                        <p class="text-muted mb-0">
-                          Desde <span class="fw-bold">{{ ranking.from_points }} EXP</span> 
-                          hasta <span class="fw-bold">{{ ranking.to_points }} EXP</span>
-                        </p>
-                      </div>
+        <div class="container mt-4">
+          {% for ranking in viewData.rankings %}
+          <div class="row justify-content-center">
+            <div class="col-md-12">
+              <div class="card shadow-lg p-3 mb-4 division-bg sv-br-20 border-0">
+                <div class="card-body">
+                  <div class="d-flex align-items-center">
+                    <img src="{{ ranking.image.url }}" alt="" style="width: auto; height: 120px" />
+                    <div class="ms-3">
+                      <p class="fw-bold mb-1">{{ ranking.name }}</p>
+                      <p class="text-muted mb-0">
+                        Desde <span class="fw-bold">{{ ranking.from_points }} EXP</span>
+                        hasta <span class="fw-bold">{{ ranking.to_points }} EXP</span>
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            {% endfor %}
           </div>
-
-      </div>
-      <div class="col-md-6 col-lg-6 col-xl-6 mx-auto mb-3 text-center d-none d-md-block">
-        <img src="{% static 'images/rankings.png' %}" class="max-width-100" alt="about" />
+          {% endfor %}
+        </div>
       </div>
     </div>
   </div>
 </div>
-{% endblock content %} 
+{% endblock content %}

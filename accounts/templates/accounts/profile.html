@@ -1,70 +1,73 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+
 <div class="p-3">
-  <div class="container">
-    <div class="row mt-3">
-      <div class="col-lg-4">
-        <div class="card mb-4 shadow-lg p-3 mb-4 bg-white rounded border-0">
-          <form method="post" enctype="multipart/form-data" id="profilePicForm">
-            {% csrf_token %}
-            <div class="card-body text-center ">
-              {% if viewData.user.profile_picture %}
-              <img src="{{ viewData.user.profile_picture.url }}" alt="avatar"
-                class="rounded-circle img-fluid img-profile">
-              {% else %}
-              <img src="{% static 'images/ava3.webp' %}" alt="avatar"
-                class="rounded-circle img-fluid img-profile">
-              {% endif %}
-              <h5 class="my-3 mb-1">{{ viewData.user.username }}</h5>
-              <h6 class="text-muted mb-3">({{ viewData.user.experience_points }} EXP)</h6>
-              <div class="d-flex justify-content-center mb-2">
-                <input type="file" id="profilePicInput" name="profile_pic" style="display: none;">
-                <label for="profilePicInput" class="btn btn-primary">Editar imagen</label>
-                <button type="submit" class="btn btn-success" style="display: none;">Guardar</button>
+  <div class="container mt-2">
+    <div class="row text-center">
+      <div class="col-12 mx-auto">
+        <div class="p-3 learn-top-gray sv-br-20">
+          <div class="container">
+            <div class="row align-items-center p-3">
+              <div class="col-12 col-md-4 text-center mb-4 mb-sm-0">
+                <form method="post" enctype="multipart/form-data" id="profilePicForm">
+                  {% csrf_token %}
+                  {% if viewData.user.profile_picture %}
+                  <img src="{{ viewData.user.profile_picture.url }}" alt="avatar"
+                    class="rounded-circle img-fluid img-profile">
+                  {% else %}
+                  <img src="{% static 'images/ava3.webp' %}" alt="avatar" class="rounded-circle img-fluid img-profile">
+                  {% endif %}
+                  <h5 class="my-3 mb-1"><b>{{ viewData.user.username }}</b></h5>
+                  <h6 class="text-muted mb-3">{{ viewData.user.experience_points }} exp</h6>
+                  <input type="file" id="profilePicInput" name="profile_pic" style="display: none;">
+                  <label for="profilePicInput" class="btn btn-secondary mb-3">Editar imagen</label>
+                  <button type="submit" class="btn btn-success" style="display: none;">Guardar</button>
+                </form>
               </div>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="col-lg-8">
-        <div class="card mb-4 shadow-lg p-3 mb-4 bg-white rounded border-0">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Nombre de usuario</p>
+              <div class="col-1 hfc d-none d-md-block">
+                <div class="vr h250"></div>
               </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{{ viewData.user.username }}</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Email</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{{ viewData.user.email }}</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Puntos EXP</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{{ viewData.user.experience_points }}</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">División actual</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0 fw-bold">
-                  <a class="text-decoration-none" href="{% url 'accounts.rankings' %}">{{ viewData.ranking.name }}</a>
-                </p>
+              <div class="col-11 col-md-7 text-start">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Nombre de usuario</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{ viewData.user.username }}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Email</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{ viewData.user.email }}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Puntos EXP</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{ viewData.user.experience_points }}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">División actual</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0 fw-bold">
+                        <a class="text-decoration-none" href="{% url 'accounts.rankings' %}">{{ viewData.ranking.name }}</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -74,13 +77,54 @@
   </div>
 </div>
 
+<div class="p-3">
+  <div class="container mt-1">
+    <div class="row text-center">
+      <div class="col-md-6 mx-auto">
+        <a style="text-decoration: none;" href="{% url 'accounts.stats' %}">
+          <div class="shadow-lg p-3 mb-5 learn-top-gray sv-br-20 l-gray">
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-5 col-sm-5 col-md-5">
+                  <img src="{% static 'images/profile/revisa.png' %}" height="125px" class="img-max100" alt="c1" />
+                </div>
+                <div class="col-7 col-sm-7 col-md-7 text-start">
+                  <span class="title-categories rc-no-a"><b>Revisa</b></span><br />
+                  <span class="title-categories rc-no-a">tus estadísticas</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6 mx-auto">
+        <a style="text-decoration: none;" href="{% url 'accounts.rankings' %}">
+          <div class="shadow-lg p-3 mb-5 learn-top-gray sv-br-20 l-gray">
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-5 col-sm-5 col-md-5">
+                  <img src="{% static 'images/profile/explora.png' %}" height="125px" class="img-max100" alt="c1" />
+                </div>
+                <div class="col-7 col-sm-7 col-md-7 text-start">
+                  <span class="title-categories rc-no-a"><b>Explora</b></span><br />
+                  <span class="title-categories rc-no-a">nuestro ranking</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- JavaScript code -->
 <script>
-    $(document).ready(function() {
-        $('#profilePicInput').on('change', function() {
-            $('#profilePicForm').submit();
-        });
+  $(document).ready(function () {
+    $('#profilePicInput').on('change', function () {
+      $('#profilePicForm').submit();
     });
+  });
 </script>
 
 {% endblock content %}

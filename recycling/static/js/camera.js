@@ -1,4 +1,4 @@
-const width = 320; // We will scale the photo width to this
+let width = 0; // We will scale the photo width to this
 let height = 0; // This will be computed based on the input stream
 
 let streaming = false;
@@ -26,7 +26,7 @@ function startup() {
   if (showViewLiveResultButton()) {
     return;
   }
-  
+
   video = document.getElementById("video");
   canvas = document.getElementById("canvas");
   photo = document.getElementById("photo");
@@ -61,10 +61,21 @@ function startup() {
     "canplay",
     (ev) => {
       if (!streaming) {
-        height = video.videoHeight / (video.videoWidth / width);
+        if (screen.width < 992) {
+          width = 320
+          height = video.videoHeight / (video.videoWidth / width);
+        } else {
+          width = 320
+          height = video.videoHeight / (video.videoWidth / width);
+        }
 
         if (isNaN(height)) {
-          height = width / (4 / 3);
+          if (screen.width < 992) {
+            height = width / (16 / 9);
+          } else {
+            height = width / (4 / 3);
+          }
+
         }
 
         video.setAttribute("width", width);
@@ -101,8 +112,8 @@ function takepicture() {
   shuttersound.play();
   const context = canvas.getContext("2d");
   if (photo.width && photo.height) {
-    canvas.width = photo.width;
-    canvas.height = photo.height;
+    photo.width = canvas.width;
+    photo.height = canvas.height;
     context.drawImage(video, 0, 0, photo.width, photo.height);
     video.style.display = "none";
     startbutton.style.display = "none";
@@ -131,14 +142,14 @@ LABELS = {
 function getCookie(name) {
   let cookieValue = null;
   if (document.cookie && document.cookie !== '') {
-      const cookies = document.cookie.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-          const cookie = cookies[i].trim();
-          if (cookie.substring(0, name.length + 1) === (name + '=')) {
-              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-              break;
-          }
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
       }
+    }
   }
   return cookieValue;
 }
@@ -157,12 +168,12 @@ function scanpicture(api_key, ip_server) {
   apikey = api_key
   $.ajax({
     type: "POST",
-    url:serverURL,
-    data: JSON.stringify({'frame': imageData, 'user': 'online-guest'}),
+    url: serverURL,
+    data: JSON.stringify({ 'frame': imageData, 'user': 'online-guest' }),
     crossDomain: true,
     dataType: 'json',
-    headers: {"x-api-key": apikey},
-    success: function(response) {
+    headers: { "x-api-key": apikey },
+    success: function (response) {
       responseElement = document.getElementById("scanresponse");
       var label = LABELS.hasOwnProperty(response.prediction) ? LABELS[response.prediction] : LABELS[-1];
       if (response.prediction == '-1' || response.prediction == '5') {
@@ -182,16 +193,16 @@ function scanpicture(api_key, ip_server) {
       $.ajax({
         type: "POST",
         url: url_save_image,
-        data: JSON.stringify({'frame': imageData}),
+        data: JSON.stringify({ 'frame': imageData }),
         crossDomain: true,
         dataType: 'json',
         headers: {
           "X-CSRFToken": csrftoken
         },
-        success: function(response) {
-          console.log(response);
+        success: function (response) {
+          //console.log(response);
         },
-        error: function(response) {
+        error: function (response) {
           alert('Error escaneando foto');
         },
       });
@@ -199,7 +210,7 @@ function scanpicture(api_key, ip_server) {
       $('#scanmodal').modal('show');
       $('#scanspinner').addClass('d-none');
     },
-    error: function(response) {
+    error: function (response) {
       alert('Error escaneando foto');
     },
   });

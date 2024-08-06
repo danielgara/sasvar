@@ -433,6 +433,18 @@ body {
     background-color: #FFFFFF!important;
 }
 
+.learn-top-gray {
+    background-color: #E2E2E2 !important;
+}
+
+.learn-top-gray2 {
+    background-color: #272B2E!important;
+}
+
+.learn-top-yellow {
+    background-color: #F9E568!important;
+}
+
 .learn-top-sublevel {
     background-color: #FFFEF6!important;
 }
@@ -555,3 +567,37 @@ body {
 }
 
 /* Scanner */
+
+
+/* Profile */
+
+.hfc {
+    height: fit-content;
+}
+
+.h250 {
+    height: 270px !important;
+}
+
+.l-gray:hover {
+    background-color: #ABABAB!important;
+}
+
+/* Profile */
+
+/* Stats */
+
+.gray-bg {
+    background-color: #C7C7C7;
+}
+
+.division-bg {
+    background-color: #FFF8CA;
+}
+
+.font-division {
+    color: #A79840;
+}
+
+/* Stats */
+

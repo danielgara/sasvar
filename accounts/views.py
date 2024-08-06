@@ -128,6 +128,7 @@ def rankings(request):
     progress_percentage = 100 * (1 - (pending_points / (user_ranking.to_points + 1 - user_ranking.from_points)))
     viewData["user_points"] = user_points
     viewData["user_ranking_name"] = user_ranking.name
+    viewData["user_ranking_image"] = user_ranking.image
     viewData["user_pending_points"] = pending_points
     viewData["user_progress_percentage"] = round(progress_percentage)
 
