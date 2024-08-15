@@ -12,44 +12,20 @@
                 <div class="carousel-inner">
                   <div class="carousel-item active">
                     <div class="sv-carousel-item">
-                      <a style="text-decoration: none;" href="{% url 'home.learn' %}">
-                        <div class="p-3 bg-white rounded sv-br-20 car-1">
-                          <div class="container">
-                            <div class="row align-items-center">
-                              <div class="col-4 col-sm-4 col-md-4 text-center">
-                                <img src="{% static 'images/home/sec-1.png' %}" height="auto" class="img-max-home" alt="aprende" />
-                              </div>
-                              <div class="col-8 col-sm-8 col-md-8 text-center">
-                                <p class="title-categories rc-no-a font-white">
-                                  <span class="fw-bolder">Aprende sobre el manejo de residuos</span>
-                                </p>
-                                <p class="rc-no-a mb-0 font-white">
-                                  <span class="font-13">Revisa tu <span class="fw-bolder">historial de disposiciones y tu porcentaje de aciertos.</span>
-                                  Descubre qué conocimientos debes reforzar. Además, puedes ver tu historial de consumos con base en los productos has desechado.</span>
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <div class="sv-carousel-item">
                       <a style="text-decoration: none;" href="{% url 'scanner.index' %}">
-                        <div class="p-3 bg-white rounded sv-br-20 car-2">
+                        <div class="p-3 rounded sv-br-20" style="background-color: #FFF3DA;">
                           <div class="container">
                             <div class="row align-items-center">
                               <div class="col-4 col-sm-4 col-md-4 text-center">
-                                <img src="{% static 'images/home/sec-2.png' %}" height="auto" class="img-max-home" alt="aprende" />
+                                <img src="{% static 'images/home/aprende.png' %}" height="auto" class="img-max-home" alt="aprende" />
                               </div>
                               <div class="col-8 col-sm-8 col-md-8 text-center">
-                                <p class="title-categories rc-no-a font-white">
+                                <p class="title-categories rc-no-a">
                                   <span class="fw-bolder">Recibe asistencia para separar tus residuos</span>
                                 </p>
-                                <p class="rc-no-a mb-0 font-white">
-                                  <span class="font-13">Utiliza la cámara de tu teléfono para <span class="fw-bolder">escanear un residuo</span> 
-                                  y conocer dónde debes depositarlo.
+                                <p class="rc-no-a mb-0">
+                                  <span class="font-13">Utiliza la cámara de tu teléfono para 
+                                    <span class="fw-bolder">escanear un residuo</span> y conocer dónde debes depositarlo.</span>
                                 </p>
                               </div>
                             </div>
@@ -58,46 +34,23 @@
                       </a>
                     </div>
                   </div>
-                  <div class="carousel-item">
-                    <div class="sv-carousel-item">
-                      <a style="text-decoration: none;" href="{% url 'home.index' %}">
-                        <div class="p-3 bg-white rounded sv-br-20 car-3">
-                          <div class="container">
-                            <div class="row align-items-center">
-                              <div class="col-4 col-sm-4 col-md-4 text-center">
-                                <img src="{% static 'images/home/sec-3.png' %}" height="auto" class="img-max-home" alt="aprende" />
-                              </div>
-                              <div class="col-8 col-sm-8 col-md-8 text-center">
-                                <p class="title-categories rc-no-a font-white">
-                                  <span class="fw-bolder">Encuentra puntos ecológicos cercanos</span>
-                                </p>
-                                <p class="rc-no-a mb-0 font-white">
-                                  <span class="font-13">Ubica en el mapa los <span class="fw-bolder">puntos SASVAR</span>
-                                  más convenientes para ti.</span>
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
+
                   <div class="carousel-item">
                     <div class="sv-carousel-item">
                       <a style="text-decoration: none;" href="{% url 'home.experience' %}">
-                        <div class="p-3 bg-white rounded sv-br-20 car-4">
+                        <div class="p-3 rounded sv-br-20" style="background-color: #FFF8AE;">
                           <div class="container">
                             <div class="row align-items-center">
                               <div class="col-4 col-sm-4 col-md-4 text-center">
-                                <img src="{% static 'images/home/sec-4.png' %}" height="auto" class="img-max-home" alt="aprende" />
+                                <img src="{% static 'images/home/acumula.png' %}" height="auto" class="img-max-home" alt="aprende" />
                               </div>
                               <div class="col-8 col-sm-8 col-md-8 text-center">
                                 <p class="title-categories rc-no-a">
                                   <span class="fw-bolder">Acumula puntos de experiencia</span>
                                 </p>
                                 <p class="rc-no-a mb-0">
-                                  <span class="font-13">En los puntos ecológicos de SASVAR, al hacer disposiciones correctas, puedes
-                                    <span class="fw-bolder">ganar puntos de experiencia (EXP)</span> 
+                                  <span class="font-13">En los puntos ecológicos de SASVAR,
+                                    al hacer disposiciones correctas, puedes <span class="fw-bolder">ganar puntos de experiencia (EXP)</span>
                                     que te permiten evaluar tu progreso.</span>
                                 </p>
                               </div>
@@ -107,22 +60,23 @@
                       </a>
                     </div>
                   </div>
+
                   <div class="carousel-item">
                     <div class="sv-carousel-item">
-                      <a style="text-decoration: none;" href="{% url 'accounts.stats' %}">
-                        <div class="p-3 bg-white rounded sv-br-20 car-5">
+                      <a style="text-decoration: none;" href="{% url 'home.locate' %}">
+                        <div class="p-3 rounded sv-br-20" style="background-color: #D4FFB7;">
                           <div class="container">
                             <div class="row align-items-center">
                               <div class="col-4 col-sm-4 col-md-4 text-center">
-                                <img src="{% static 'images/home/sec-5.png' %}" height="auto" class="img-max-home" alt="aprende" />
+                                <img src="{% static 'images/home/encuentra.png' %}" height="auto" class="img-max-home" alt="aprende" />
                               </div>
                               <div class="col-8 col-sm-8 col-md-8 text-center">
-                                <p class="title-categories rc-no-a font-white">
-                                  <span class="fw-bolder">Conoce tus estadísticas de desecho</span>
+                                <p class="title-categories rc-no-a">
+                                  <span class="fw-bolder">Encuentra puntos ecológicos cercanos</span>
                                 </p>
-                                <p class="rc-no-a mb-0 font-white">
-                                  <span class="font-13">Descubre información de interés sobre aspectos a tener en 
-                                    cuenta a la hora de separar residuos.</span>
+                                <p class="rc-no-a mb-0">
+                                  <span class="font-13">Ubica en el mapa los <span class="fw-bolder">puntos SASVAR</span>
+                                    más convenientes para ti.</span>
                                 </p>
                               </div>
                             </div>
@@ -131,6 +85,60 @@
                       </a>
                     </div>
                   </div>
+
+                  <div class="carousel-item">
+                    <div class="sv-carousel-item">
+                      <a style="text-decoration: none;" href="{% url 'home.learn' %}">
+                        <div class="p-3 rounded sv-br-20" style="background-color: #BFECE0;">
+                          <div class="container">
+                            <div class="row align-items-center">
+                              <div class="col-4 col-sm-4 col-md-4 text-center">
+                                <img src="{% static 'images/home/escanea.png' %}" height="auto" class="img-max-home" alt="aprende" />
+                              </div>
+                              <div class="col-8 col-sm-8 col-md-8 text-center">
+                                <p class="title-categories rc-no-a">
+                                  <span class="fw-bolder">Aprende sobre el manejo de residuos</span>
+                                </p>
+                                <p class="rc-no-a mb-0">
+                                  <span class="font-13">Revisa tu <span class="fw-bolder">
+                                    historial de disposiciones y tu porcentaje de aciertos.</span>
+                                    Descubre que conocimientos debes reforzar. Además, puedes ver tu historial
+                                    de consumos con base en los productos que has desechado.</span>
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="carousel-item">
+                    <div class="sv-carousel-item">
+                      <a style="text-decoration: none;" href="{% url 'accounts.stats' %}">
+                        <div class="p-3 rounded sv-br-20" style="background-color: #F1F1F1;">
+                          <div class="container">
+                            <div class="row align-items-center">
+                              <div class="col-4 col-sm-4 col-md-4 text-center">
+                                <img src="{% static 'images/home/revisa.png' %}" height="auto" class="img-max-home" alt="aprende" />
+                              </div>
+                              <div class="col-8 col-sm-8 col-md-8 text-center">
+                                <p class="title-categories rc-no-a">
+                                  <span class="fw-bolder">Conoce tus estadísticas de desecho</span>
+                                </p>
+                                <p class="rc-no-a mb-0">
+                                  <span class="font-13">Descubre información de interés sobre aspectos
+                                    a tener en cuenta a la hora de separar residuos.
+                                  </span>
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
                   data-bs-slide="prev">

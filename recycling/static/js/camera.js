@@ -130,13 +130,14 @@ function takepicture() {
 
 LABELS = {
   '-1': 'Incierto',
-  '0': 'Empaque impreso',
-  '1': 'Botella',
-  '2': 'Papel',
-  '3': 'Lata de aluminio',
-  '4': 'Vaso de papel',
+  '0': 'Botella',
+  '1': 'Empaques Impresos',
+  '2': 'Envase',
+  '3': 'Lata',
+  '4': 'Orgánico',
   '5': 'Otros',
-  '6': 'Orgánico',
+  '6': 'Papel no reciclable',
+  '7': 'Papeles',
 };
 
 function getCookie(name) {
@@ -176,10 +177,10 @@ function scanpicture(api_key, ip_server) {
     success: function (response) {
       responseElement = document.getElementById("scanresponse");
       var label = LABELS.hasOwnProperty(response.prediction) ? LABELS[response.prediction] : LABELS[-1];
-      if (response.prediction == '-1' || response.prediction == '5') {
+      if (response.prediction == '-1' || response.prediction == '5' || response.prediction == '6') {
         mbin.innerHTML = 'negra';
         mimg1.classList.add('d-none'); mimg3.classList.add('d-none'); mimg2.classList.remove('d-none');
-      } else if (response.prediction == '6') {
+      } else if (response.prediction == '4') {
         mbin.innerHTML = 'verde';
         mimg1.classList.add('d-none'); mimg2.classList.add('d-none'); mimg3.classList.remove('d-none');
       } else {

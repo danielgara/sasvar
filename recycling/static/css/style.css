@@ -228,6 +228,11 @@ body {
 }
 
 @media (max-width: 991px) {
+    .navbar-brand{
+        width: 80%;
+        text-align: center;
+    }
+
     .btn-sv, .btn-sv-secondary {
         width: 140px;
     }
