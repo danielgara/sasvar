@@ -29,33 +29,33 @@ def learn(request):
 
 def l1(request):
     viewData = {}
-    viewData["title"] = "Nivel 1"
+    viewData["title"] = "Módulo 1"
     viewData["breadcrumbItems"] = [
         {"name": "Inicio", "route": "home.index"},
         {"name": "Aprende", "route": "home.learn"},
-        {"name": "Nivel 1", "route": "home.learn.l1"},
+        {"name": "Módulo 1", "route": "home.learn.l1"},
     ]
     return render(request, 'home/learn/l1.html', {"viewData": viewData})
 
 
 def l2(request):
     viewData = {}
-    viewData["title"] = "Nivel 2"
+    viewData["title"] = "Módulo 2"
     viewData["breadcrumbItems"] = [
         {"name": "Inicio", "route": "home.index"},
         {"name": "Aprende", "route": "home.learn"},
-        {"name": "Nivel 2", "route": "home.learn.l2"},
+        {"name": "Módulo 2", "route": "home.learn.l2"},
     ]
     return render(request, 'home/learn/l2.html', {"viewData": viewData})
 
 
 def l3(request):
     viewData = {}
-    viewData["title"] = "Nivel 3"
+    viewData["title"] = "Módulo 3"
     viewData["breadcrumbItems"] = [
         {"name": "Inicio", "route": "home.index"},
         {"name": "Aprende", "route": "home.learn"},
-        {"name": "Nivel 3", "route": "home.learn.l3"},
+        {"name": "Módulo 3", "route": "home.learn.l3"},
     ]
     return render(request, 'home/learn/l3.html', {"viewData": viewData})
 
@@ -66,7 +66,7 @@ def l1_sublevel(request, name):
     viewData["breadcrumbItems"] = [
         {"name": "Inicio", "route": "home.index"},
         {"name": "Aprende", "route": "home.learn"},
-        {"name": "Nivel 1", "route": "home.learn.l1"},
+        {"name": "Módulo 1", "route": "home.learn.l1"},
         {"name": name.capitalize(), "route": "home.learn.l1.sublevel", "params": {"name": name}},
     ]
     return render(request, 'home/learn/l1/' + name + '.html', {"viewData": viewData})
@@ -78,7 +78,7 @@ def l2_sublevel(request, name):
     viewData["breadcrumbItems"] = [
         {"name": "Inicio", "route": "home.index"},
         {"name": "Aprende", "route": "home.learn"},
-        {"name": "Nivel 2", "route": "home.learn.l2"},
+        {"name": "Módulo 2", "route": "home.learn.l2"},
         {"name": name.capitalize(), "route": "home.learn.l2.sublevel", "params": {"name": name}},
     ]
     return render(request, 'home/learn/l2/' + name + '.html', {"viewData": viewData})
