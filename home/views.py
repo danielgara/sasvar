@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from accounts.models import Ranking
 
 
 def index(request):
@@ -99,6 +100,7 @@ def experience(request):
     viewData["title"] = "Registro de Experiencia"
     viewData["breadcrumbItems"] = [
         {"name": "Inicio", "route": "home.index"},
-        {"name": "Registro de Experiencia", "route": "home.experience"},
+        {"name": "Acumula", "route": "home.experience"},
     ]
+    viewData["rankings"] = Ranking.objects.order_by('-level')
     return render(request, 'home/experience.html', {"viewData": viewData})
