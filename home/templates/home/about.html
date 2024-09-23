@@ -1,32 +1,129 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block content %}
 {% load static %}
-<div class="p-3">
-  <div class="container">
-    <div class="row mt-3">
-      <div class="col-md-6 col-lg-6 col-xl-6 mx-auto mb-3">
-        <b>Acerca</b>
-        <hr />
-        <p class="font-13 rc-footer-font">¡Presentamos nuestra innovadora aplicación de reciclaje! Nuestra aplicación está diseñada para hacer
-          una vida con conciencia ecológica más accesible y cómoda. Con una interfaz fácil de usar,
-          simplifica el proceso de eliminación de basura en los lugares correctos.</p>
-        <p class="font-13 rc-footer-font">Simplemente escaneando un código de barras o tomando una foto de un artículo, nuestra aplicación identifica
-          el material y proporciona instrucciones detalladas sobre cómo y dónde reciclarlo correctamente.
-          Ya sean plásticos, papel, vidrio o desechos electrónicos, nuestra aplicación guía a los usuarios hasta los centros de reciclaje, 
-          puntos de recolección o lugares de entrega más cercanos.</p>
-        <p class="font-13 rc-footer-font">Además de promover la eliminación responsable de residuos, nuestra aplicación también rastrea su
-          esfuerzos ecológicos, proporcionando información sobre su impacto ambiental, como la cantidad de residuos que ha
-          desviados de los vertederos y el ahorro de energía logrado mediante el reciclaje. Incluso ofrece recompensas y desafíos.
-           animar y motivar a los usuarios a reciclar de forma más eficiente.</p>
-        <p class="font-13 rc-footer-font">Únase a nosotros en la misión de reducir los residuos y proteger nuestro planeta.
-          Con nuestra aplicación de reciclaje, no solo generarás un impacto positivo en el medio ambiente sino que también experimentarás
-          La comodidad de una vida sostenible a tu alcance. Juntos, contribuyamos a una vida más verde,
-          futuro más limpio.</p>
-      </div>
-      <div class="col-md-6 col-lg-6 col-xl-6 mx-auto mb-3 text-center">
-        <img src="{% static 'images/green-rock.jpg' %}" class="max-width-100" alt="about" />
+
+<div class="row text-center">
+  <div class="col-12 mx-auto">
+    <div class="p-3 learn-top-blue2">
+      <div class="container">
+        <div class="row align-items-center p-3">
+          <div class="col-12 col-sm-7 col-md-7 text-white text-start mb-4 mb-sm-0">
+            <b class="text-start rc-no-a font-about-blue-1" style="font-size: 40px;">Acerca de</b><br />
+            <b class="text-start rc-no-a font-about-blue-1" style="font-size: 60px;">Sasvar</b>
+          </div>
+          <div class="col-12 col-sm-5 col-md-5">
+            <img src="{% static 'images/about/banner.png' %}" class="img-max100 img-maxw300" alt="c1" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-{% endblock content %} 
+
+<div class="row text-center">
+  <div class="col-12 mx-auto">
+    <div class="p-3 learn-top-blue3">
+      <div class="container">
+        <div class="row align-items-center p-3">
+          <div class="col-12">
+            <b class="rc-no-a font-about-blue-1" style="font-size: 40px;">¿Porqué SASVAR?</b><br /><br />
+            <span class="font-about-blue-1">Somos un proyecto comprometido con el incremento
+              de las tasas de reciclaje, <b>impulsando una separación
+                más eficiente de los residuos a través de la
+                implementación de un punto ecológico inteligente y
+                un aplicativo digital</b>.
+              Nuestro punto ecológico está diseñado para
+              identificar los residuos y orientar a los usuarios sobre
+              cómo disponerlos correctamente, brindándoles
+              información que los ayuda a tomar decisiones más
+              conscientes y a aumentar su conciencia ambiental
+              cada vez que utilizan el punto SASVAR.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row text-center">
+  <div class="col-12 mx-auto">
+    <div class="p-3 learn-top-blue4">
+      <div class="container">
+        <div class="row align-items-center p-3">
+          <div class="col-12">
+            <b class="rc-no-a font-about-blue-1" style="font-size: 40px;">Nuestros Principios</b><br /><br />
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div>
+            <div class="container">
+              <div class="row text-center">
+                <div class="col-12 col-sm-6 col-xl-3 mx-auto">
+                  <div class="shadow-lg p-2 pb-3 mb-5 bg-white sv-br-20 l-about">
+                    <div class="container">
+                      <div class="row align-items-center">
+                        <div class="col-12">
+                          <img src="{% static 'images/about/1.png' %}" height="220px" class="img-max100" alt="c1" />
+                        </div>
+                        <div class="col-12 text-center">
+                          <b class="title-categories font-about-blue-1 fs-6 rc-no-a">Sostenibilidad</b>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3 mx-auto">
+                  <div class="shadow-lg p-2 pb-3 mb-5 bg-white sv-br-20 l-about">
+                    <div class="container">
+                      <div class="row align-items-center">
+                        <div class="col-12">
+                          <img src="{% static 'images/about/2.png' %}" height="220px" class="img-max100" alt="c1" />
+                        </div>
+                        <div class="col-12 text-center">
+                          <b class="title-categories font-about-blue-1 fs-6 rc-no-a">Tecnología</b>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3 mx-auto">
+                  <div class="shadow-lg p-2 pb-3 mb-5 bg-white sv-br-20 l-about">
+                    <div class="container">
+                      <div class="row align-items-center">
+                        <div class="col-12">
+                          <img src="{% static 'images/about/3.png' %}" height="220px" class="img-max100" alt="c1" />
+                        </div>
+                        <div class="col-12 text-center">
+                          <b class="title-categories font-about-blue-1 fs-6 rc-no-a">Investigación</b>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3 mx-auto">
+                  <div class="shadow-lg p-2 pb-3 mb-5 bg-white sv-br-20 l-about">
+                    <div class="container">
+                      <div class="row align-items-center">
+                        <div class="col-12">
+                          <img src="{% static 'images/about/4.png' %}" height="220px" class="img-max100" alt="c1" />
+                        </div>
+                        <div class="col-12 text-center">
+                          <b class="title-categories font-about-blue-1 fs-6 rc-no-a">Innovación</b>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

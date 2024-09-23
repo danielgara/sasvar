@@ -488,6 +488,18 @@ body {
     background-color: #CCEBF4!important;
 }
 
+.learn-top-blue2 {
+    background-color: #8DE3CA!important;
+}
+
+.learn-top-blue3 {
+    background-color: #ECF5F7!important;
+}
+
+.learn-top-blue4 {
+    background-color: #A0C9BE!important;
+}
+
 .font-learn13 {
     font-size: 13px;
 }
@@ -616,3 +628,14 @@ body {
 
 /* Stats */
 
+/* About */
+
+.font-about-blue-1 {
+    color: #356053;
+}
+
+.l-about {
+    background-color: #D5FFF3!important;
+}
+
+/* About */
