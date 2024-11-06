@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, Ranking, Code, UserHistory, Waste
+from .models import User, Ranking, Code, UserHistory, Waste, ScanData
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.contrib.admin import ModelAdmin
 import csv
@@ -127,4 +127,22 @@ class WasteAdmin(ModelAdmin):
             formfield.label = 'Versión del modelo'
         elif db_field.name == 'success':
             formfield.label = 'Éxito'
+        return formfield
+
+
+@admin.register(ScanData)
+class ScanDataAdmin(admin.ModelAdmin):
+    # Puedes personalizar los campos que se mostrarán en la lista de registros
+    list_display = ('id', 'waste_type', 'container', 'timestamp')
+    search_fields = ('waste_type', 'container')  # Campos de búsqueda
+
+    # Personaliza las etiquetas de los campos en el formulario de administración
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        formfield = super().formfield_for_dbfield(db_field, **kwargs)
+        if db_field.name == 'waste_type':
+            formfield.label = 'Tipo de residuo'
+        elif db_field.name == 'container':
+            formfield.label = 'Contenedor'
+        elif db_field.name == 'timestamp':
+            formfield.label = 'Fecha y hora de escaneo'
         return formfield

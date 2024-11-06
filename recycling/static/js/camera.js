@@ -159,14 +159,14 @@ function scanpicture(api_key, ip_server) {
   const csrftoken = getCookie('csrftoken');
 
   $('#scanspinner').removeClass('d-none');
-  serverURL = ip_server
+  serverURL = ip_server;
   photoTaken = document.getElementById("photo");
-  mbin = document.getElementById("m-bin");
-  mimg1 = document.getElementById("m-img1");
-  mimg2 = document.getElementById("m-img2");
-  mimg3 = document.getElementById("m-img3");
+  mbin = document.getElementById("m-bin"); 
+  responseElement = document.getElementById("scanresponse"); 
   imageData = photoTaken.getAttribute("src");
-  apikey = api_key
+  apikey = api_key;
+
+  // Llamada AJAX al servidor de escaneo
   $.ajax({
     type: "POST",
     url: serverURL,
@@ -175,36 +175,38 @@ function scanpicture(api_key, ip_server) {
     dataType: 'json',
     headers: { "x-api-key": apikey },
     success: function (response) {
-      responseElement = document.getElementById("scanresponse");
+      // Asigna el tipo de residuo y contenedor con base en la respuesta
       var label = LABELS.hasOwnProperty(response.prediction) ? LABELS[response.prediction] : LABELS[-1];
+      responseElement.innerHTML = label;
+      
       if (response.prediction == '-1' || response.prediction == '5' || response.prediction == '6') {
         mbin.innerHTML = 'negra';
-        mimg1.classList.add('d-none'); mimg3.classList.add('d-none'); mimg2.classList.remove('d-none');
       } else if (response.prediction == '4') {
         mbin.innerHTML = 'verde';
-        mimg1.classList.add('d-none'); mimg2.classList.add('d-none'); mimg3.classList.remove('d-none');
       } else {
         mbin.innerHTML = 'blanca';
-        mimg2.classList.add('d-none'); mimg3.classList.add('d-none'); mimg1.classList.remove('d-none');
       }
-      responseElement.innerHTML = label;
 
+      // Llamada AJAX para guardar la imagen y los datos en Django
       url_save_image = '/escaneo/guardar';
-
       $.ajax({
         type: "POST",
         url: url_save_image,
-        data: JSON.stringify({ 'frame': imageData }),
+        data: JSON.stringify({
+          'frame': imageData,
+          'waste_type': label,      
+          'container': mbin.innerHTML  
+        }),
+
+       
         crossDomain: true,
         dataType: 'json',
-        headers: {
-          "X-CSRFToken": csrftoken
-        },
+        headers: { "X-CSRFToken": csrftoken },
         success: function (response) {
-          //console.log(response);
+          console.log("Datos guardados en la base de datos:", response);
         },
         error: function (response) {
-          alert('Error escaneando foto');
+          alert('Error guardando datos');
         },
       });
 
@@ -216,6 +218,7 @@ function scanpicture(api_key, ip_server) {
     },
   });
 }
+
 
 function closemodal() {
   $('#scanmodal').modal('hide');
