@@ -40,4 +40,6 @@ urlpatterns = [
     path('estadisticas', views.stats, name='accounts.stats'),
     path('', views.index, name='accounts.index'),
     path('cargar_json', views.upload_json, name='accounts.upload_json'),
+    path('grafico', views.get_scan_data, name='accounts.get_scan_data'),
+    path('grafico2', views.scanner_chart, name='accounts.scanner_chart'),
 ]

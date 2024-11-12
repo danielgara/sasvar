@@ -5,7 +5,8 @@ from django.contrib.admin import ModelAdmin
 import csv
 from django.http import HttpResponse
 from io import StringIO
-
+from django.urls import path
+from django.template.response import TemplateResponse
 
 @admin.register(User)
 class UserAdmin(DjangoUserAdmin):
@@ -146,3 +147,26 @@ class ScanDataAdmin(admin.ModelAdmin):
         elif db_field.name == 'timestamp':
             formfield.label = 'Fecha y hora de escaneo'
         return formfield
+    
+
+class CustomAdminSite(admin.AdminSite):
+    site_header = "Panel de Administración Personalizado"
+    site_title = "Admin Turisinnlab"
+    index_title = "Bienvenido al Panel de Administración"
+
+    # Registra el modelo ScanData en el sitio de administración personalizado
+    def get_urls(self):
+        urls = super().get_urls()
+        custom_urls = [
+            path('scanner-chart/', self.admin_view(self.chart_view), name='scanner_chart'),  # Página personalizada para el gráfico
+        ]
+        return custom_urls + urls
+
+    def chart_view(self, request):
+        return TemplateResponse(request, "admin/scanner_chart.html", {})
+
+# Instancia de sitio de administración personalizado
+custom_admin_site = CustomAdminSite(name='custom_admin')
+
+# Registra el modelo ScanData en el sitio de administración personalizado
+custom_admin_site.register(ScanData)

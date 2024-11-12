@@ -3,11 +3,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import redirect
 from .forms import UserCreateForm
-from .models import User, Ranking, UserHistory, Waste
+from .models import User, Ranking, UserHistory, Waste, ScanData
 from django.db import IntegrityError
 from .utils import decrypt_message
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
+from django.http import JsonResponse
+from django.db.models import Count
+
 
 
 @login_required
@@ -211,3 +214,29 @@ def upload_json(request):
             return redirect(request.META.get('HTTP_REFERER', '/'))
     else:
         return redirect(request.META.get('HTTP_REFERER', '/'))
+
+def get_scan_data(request):
+    today = datetime.now()
+    last_week = today - timedelta(days=7)
+    data = (
+        ScanData.objects.filter(timestamp__date__gte=last_week)
+        .values('timestamp__date')
+        .annotate(total=Count('id'))
+        .order_by('timestamp__date')
+    )
+
+    labels = [entry['timestamp__date'].strftime('%Y-%m-%d') for entry in data]
+    values = [entry['total'] for entry in data]
+
+    return JsonResponse({'labels': labels, 'values': values})
+
+@login_required
+def scanner_chart(request):
+    viewData = {}
+    viewData["title"] = "Gráfico del Escáner"
+    viewData["breadcrumbItems"] = [
+        {"name": "Inicio", "route": "home.index"},
+        {"name": "Mi Cuenta", "route": "accounts.index"},
+        {"name": "Gráfico del Escáner", "route": "accounts.scanner_chart"},
+    ]
+    return render(request, 'accounts/scanner_chart.html', {"viewData": viewData})
