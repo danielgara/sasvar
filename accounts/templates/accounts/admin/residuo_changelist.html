@@ -1,0 +1,124 @@
+{% extends "admin/change_list.html" %}
+
+{% block content %}
+<h2>Gráficos de Residuos</h2>
+
+<!-- Formulario para el rango de fechas -->
+<form id="dateRangeForm" style="margin-bottom: 20px;">
+    <label for="start_date">Fecha de inicio:</label>
+    <input type="date" id="start_date" name="start_date" style="margin-right: 10px;">
+    <label for="end_date">Fecha de fin:</label>
+    <input type="date" id="end_date" name="end_date" style="margin-right: 10px;">
+    <button type="button" onclick="obtenerDatos()">Filtrar</button>
+</form>
+
+<div style="display: flex; justify-content: space-between; margin-bottom: 40px;">
+    <!-- Gráficos -->
+    <div style="width: 48%;">
+        <canvas id="myChart" width="400" height="200"></canvas>
+    </div>
+    <div style="width: 48%;">
+        <canvas id="containerChart" width="400" height="200"></canvas>
+    </div>
+</div>
+
+<!-- Importar Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script type="text/javascript">
+    async function obtenerDatos() {
+        const startDate = document.getElementById('start_date').value;
+        const endDate = document.getElementById('end_date').value;
+
+        try {
+            const response = await fetch(`{% url 'accounts.get_scan_data' %}?start_date=${startDate}&end_date=${endDate}`);
+            if (response.ok) {
+                const data = await response.json();
+
+                console.log(data); // Verifica en consola los datos recibidos
+
+                // Colores personalizados
+                const customColors = ['#FFF3DA', '#BFECE0', '#D4FFB7', '#FFF8AE', '#F1F1F1'];
+
+                // Actualizar el primer gráfico (Escaneos por fecha)
+                const dateLabels = data.date_labels;
+                const dateValues = data.date_values;
+                const ctx1 = document.getElementById('myChart').getContext('2d');
+
+                if (window.myChartInstance) {
+                    window.myChartInstance.destroy();
+                }
+                window.myChartInstance = new Chart(ctx1, {
+                    type: 'bar',
+                    data: {
+                        labels: dateLabels,
+                        datasets: [{
+                            label: 'Escaneos por día',
+                            data: dateValues,
+                            backgroundColor: customColors[0],
+                            borderColor: customColors[0],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                // Actualizar el segundo gráfico (Escaneos por día y tipo de residuo)
+                const wasteTypeLabels = data.waste_type_labels;
+                const finalDates = data.final_dates;
+                const finalData = data.final_data;
+                const ctx2 = document.getElementById('containerChart').getContext('2d');
+
+                const datasets = wasteTypeLabels.map((wasteType, index) => ({
+                    label: wasteType,
+                    data: finalData[wasteType],
+                    backgroundColor: customColors[index % customColors.length],
+                    borderColor: customColors[index % customColors.length],
+                    borderWidth: 1
+                }));
+
+                if (window.containerChartInstance) {
+                    window.containerChartInstance.destroy();
+                }
+                window.containerChartInstance = new Chart(ctx2, {
+                    type: 'bar',
+                    data: {
+                        labels: finalDates,
+                        datasets: datasets
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            } else {
+                throw new Error('Error al obtener los datos');
+            }
+        } catch (error) {
+            console.error('Hubo un problema con la solicitud:', error);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', obtenerDatos);
+</script>
+
+
+<div>
+    <br>
+    <br>
+    <h2>Informacion de escaneo</h2>
+    {{ block.super }}
+</div>
+
+{% endblock %}

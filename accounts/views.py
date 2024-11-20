@@ -10,6 +10,10 @@ import json
 from datetime import datetime, timedelta
 from django.http import JsonResponse
 from django.db.models import Count
+from django.utils import timezone
+from django.db.models.functions import TruncDate
+from django.core.exceptions import ValidationError
+import datetime
 
 
 
@@ -215,20 +219,51 @@ def upload_json(request):
     else:
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
+#-------------------------------------------------------------------------------
 def get_scan_data(request):
-    today = datetime.now()
-    last_week = today - timedelta(days=7)
-    data = (
-        ScanData.objects.filter(timestamp__date__gte=last_week)
-        .values('timestamp__date')
-        .annotate(total=Count('id'))
-        .order_by('timestamp__date')
-    )
+    # Obtener y validar las fechas del rango
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
 
-    labels = [entry['timestamp__date'].strftime('%Y-%m-%d') for entry in data]
-    values = [entry['total'] for entry in data]
+    try:
+        if start_date:
+            start_date = datetime.datetime.strptime(start_date, '%Y-%m-%d')
+        else:
+            start_date = timezone.now() - timedelta(days=7)  # Por defecto, hace una semana
 
-    return JsonResponse({'labels': labels, 'values': values})
+        if end_date:
+            end_date = datetime.datetime.strptime(end_date, '%Y-%m-%d')
+        else:
+            end_date = timezone.now()  # Por defecto, hoy
+
+        # Filtrar datos por el rango de fechas
+        data = ScanData.objects.filter(timestamp__date__range=[start_date, end_date])
+
+        # Escaneos por fecha
+        date_data = data.annotate(date=TruncDate('timestamp')).values('date').annotate(total=Count('id')).order_by('date')
+        date_labels = [entry['date'].strftime('%Y-%m-%d') for entry in date_data]
+        date_values = [entry['total'] for entry in date_data]
+
+        # Escaneos por día y tipo de residuo
+        waste_type_data = data.values('timestamp__date', 'waste_type').annotate(total=Count('id')).order_by('timestamp__date')
+        waste_type_labels = list(data.values_list('waste_type', flat=True).distinct())  # Etiquetas de tipos de residuos
+        final_dates = sorted({entry['timestamp__date'].strftime('%Y-%m-%d') for entry in waste_type_data})
+
+        # Formato de datos para cada tipo de residuo
+        final_data = {waste_type: [0] * len(final_dates) for waste_type in waste_type_labels}
+        for entry in waste_type_data:
+            date_index = final_dates.index(entry['timestamp__date'].strftime('%Y-%m-%d'))
+            final_data[entry['waste_type']][date_index] = entry['total']
+
+        return JsonResponse({
+            'date_labels': date_labels,
+            'date_values': date_values,
+            'waste_type_labels': waste_type_labels,  # Cambiado de 'container_labels' a 'waste_type_labels'
+            'final_dates': final_dates,
+            'final_data': final_data  # Cambiado de 'final_data' para residuos
+        })
+    except ValidationError:
+        return JsonResponse({'error': 'Invalid date format'}, status=400)
 
 @login_required
 def scanner_chart(request):

@@ -11,6 +11,7 @@ import base64
 from accounts.models import ScanData
 
 
+
 def index(request):
     viewData = {}
     viewData["title"] = "Escaneo"
@@ -54,6 +55,7 @@ def save(request):
         scan_data = ScanData(
             waste_type=waste_type,
             container=container,
+            user=request.user if request.user.is_authenticated else None
         )
         scan_data.save()
 

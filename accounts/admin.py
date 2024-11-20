@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from io import StringIO
 from django.urls import path
 from django.template.response import TemplateResponse
+from django.db.models import Count
 
 @admin.register(User)
 class UserAdmin(DjangoUserAdmin):
@@ -131,13 +132,20 @@ class WasteAdmin(ModelAdmin):
         return formfield
 
 
+from django.db.models import Count
+from django.contrib import admin
+from django.shortcuts import render
+from .models import ScanData
+
 @admin.register(ScanData)
 class ScanDataAdmin(admin.ModelAdmin):
-    # Puedes personalizar los campos que se mostrarán en la lista de registros
-    list_display = ('id', 'waste_type', 'container', 'timestamp')
-    search_fields = ('waste_type', 'container')  # Campos de búsqueda
+    # Configuración de visualización de la tabla
+    list_display = ('id', 'waste_type', 'container', 'timestamp', 'user')
+    search_fields = ('waste_type', 'container')
+    list_filter = ('waste_type', 'timestamp')
+    change_list_template = "accounts/admin/residuo_changelist.html"
 
-    # Personaliza las etiquetas de los campos en el formulario de administración
+    # Personaliza etiquetas en el formulario de administración
     def formfield_for_dbfield(self, db_field, **kwargs):
         formfield = super().formfield_for_dbfield(db_field, **kwargs)
         if db_field.name == 'waste_type':
@@ -146,10 +154,38 @@ class ScanDataAdmin(admin.ModelAdmin):
             formfield.label = 'Contenedor'
         elif db_field.name == 'timestamp':
             formfield.label = 'Fecha y hora de escaneo'
+        elif db_field.name == 'user':
+            formfield.label = 'Usuario'
         return formfield
+
+    # Función para mostrar gráficos y los datos en el panel de administración
+    def changelist_view(self, request, extra_context=None):
+        # Obtener rango de fechas de los filtros
+        start_date = request.GET.get('start_date')
+        end_date = request.GET.get('end_date')
+        queryset = self.get_queryset(request)
+
+        # Filtrar por rango de fechas si están definidos
+        if start_date and end_date:
+            queryset = queryset.filter(timestamp__range=[start_date, end_date])
+
+        # Contar residuos por tipo para el gráfico
+        data = queryset.values('waste_type').annotate(total=Count('id'))
+
+        # Pasar los datos al contexto
+        extra_context = extra_context or {}
+        extra_context["data"] = data
+        extra_context["start_date"] = start_date
+        extra_context["end_date"] = end_date
+
+        # Llamar a la vista original de la lista de objetos (tabla de datos)
+        return super().changelist_view(request, extra_context=extra_context)
+
     
 
-class CustomAdminSite(admin.AdminSite):
+
+
+"""class CustomAdminSite(admin.AdminSite):
     site_header = "Panel de Administración Personalizado"
     site_title = "Admin Turisinnlab"
     index_title = "Bienvenido al Panel de Administración"
@@ -170,3 +206,24 @@ custom_admin_site = CustomAdminSite(name='custom_admin')
 
 # Registra el modelo ScanData en el sitio de administración personalizado
 custom_admin_site.register(ScanData)
+
+
+@admin.register(ScanData)
+class ResiduoAdmin(admin.ModelAdmin):
+    list_display = ('tipo_residuo', 'contenedor', 'fecha', 'usuario')
+    list_filter = ('tipo_residuo', 'fecha')
+
+    def changelist_view(self, request, extra_context=None):
+        # Filtrar residuos por rango de fecha usando parámetros GET
+        start_date = request.GET.get('start_date')
+        end_date = request.GET.get('end_date')
+        queryset = self.get_queryset(request)
+
+        if start_date and end_date:
+            queryset = queryset.filter(fecha__range=[start_date, end_date])
+
+        # Contar residuos por tipo para el gráfico
+        data = queryset.values('tipo_residuo').annotate(total=Count('id'))
+
+        extra_context = extra_context or {"data": data}
+        return super().changelist_view(request, extra_context=extra_context)"""
