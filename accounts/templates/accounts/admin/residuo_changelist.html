@@ -4,14 +4,24 @@
 <h2>Gráficos de Residuos</h2>
 
 <!-- Formulario para el rango de fechas -->
-<form id="dateRangeForm" style="margin-bottom: 20px;">
-    <label for="start_date">Fecha de inicio:</label>
-    <input type="date" id="start_date" name="start_date" style="margin-right: 10px;">
-    <label for="end_date">Fecha de fin:</label>
-    <input type="date" id="end_date" name="end_date" style="margin-right: 10px;">
-    <button type="button" onclick="obtenerDatos()">Filtrar</button>
+<form id="dateRangeForm" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; background-color: #f9f9f9; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <label for="start_date" style="font-weight: bold;">Fecha de inicio:</label>
+        <input type="date" id="start_date" name="start_date" style="padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px;">
+        
+        <label for="end_date" style="font-weight: bold;">Fecha de fin:</label>
+        <input type="date" id="end_date" name="end_date" style="padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px;">
+        
+        <button type="button" onclick="obtenerDatos()" style="padding: 5px 15px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Filtrar</button>
+    </div>
+    
+    <button type="button" onclick="generarReporte()" style="padding: 5px 15px; background-color: #2196F3; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Descargar Reporte en Excel</button>
 </form>
 
+<!-- Botón para descargar el reporte -->
+
+<br>
+<br>
 <div style="display: flex; justify-content: space-between; margin-bottom: 40px;">
     <!-- Gráficos -->
     <div style="width: 48%;">
@@ -24,6 +34,8 @@
 
 <!-- Importar Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Importar SheetJS para exportar a Excel -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
 <script type="text/javascript">
     async function obtenerDatos() {
@@ -37,8 +49,8 @@
 
                 console.log(data); // Verifica en consola los datos recibidos
 
-                // Colores personalizados
-                const customColors = ['#FFF3DA', '#BFECE0', '#D4FFB7', '#FFF8AE', '#F1F1F1'];
+                // Colores personalizados vivos
+                const customColors = ['#FFB74D', '#4DB6AC', '#81C784', '#FFD54F', '#E0E0E0'];
 
                 // Actualizar el primer gráfico (Escaneos por fecha)
                 const dateLabels = data.date_labels;
@@ -63,8 +75,18 @@
                     options: {
                         responsive: true,
                         scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Fecha'
+                                }
+                            },
                             y: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Cantidad de Escaneos'
+                                }
                             }
                         }
                     }
@@ -96,8 +118,18 @@
                     options: {
                         responsive: true,
                         scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Fecha'
+                                }
+                            },
                             y: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Cantidad por Tipo de Residuos'
+                                }
                             }
                         }
                     }
@@ -110,7 +142,49 @@
         }
     }
 
+    // Función para generar y descargar el reporte en Excel
+    function generarReporte() {
+        const startDate = document.getElementById('start_date').value;
+        const endDate = document.getElementById('end_date').value;
+
+        // Datos de las gráficas
+        const dateLabels = window.myChartInstance.data.labels;
+        const dateValues = window.myChartInstance.data.datasets[0].data;
+
+        const finalDates = window.containerChartInstance.data.labels;
+        const datasets = window.containerChartInstance.data.datasets;
+
+        // Crear hoja para los escaneos por día
+        const sheet1Data = [["Fecha", "Escaneos por día"]];
+        dateLabels.forEach((label, index) => {
+            sheet1Data.push([label, dateValues[index]]);
+        });
+
+        // Crear hoja para los escaneos por tipo de residuo
+        const sheet2Data = [["Fecha", ...datasets.map(dataset => dataset.label)]];
+        finalDates.forEach((label, index) => {
+            const row = [label];
+            datasets.forEach(dataset => {
+                row.push(dataset.data[index] || 0);
+            });
+            sheet2Data.push(row);
+        });
+
+        // Crear el libro y las hojas
+        const workbook = XLSX.utils.book_new();
+        const worksheet1 = XLSX.utils.aoa_to_sheet(sheet1Data);
+        const worksheet2 = XLSX.utils.aoa_to_sheet(sheet2Data);
+
+        XLSX.utils.book_append_sheet(workbook, worksheet1, "Escaneos por Día");
+        XLSX.utils.book_append_sheet(workbook, worksheet2, "Escaneos por Tipo");
+
+        // Descargar el archivo
+        const filename = `Reporte_escaneos_${startDate}_a_${endDate}.xlsx`;
+        XLSX.writeFile(workbook, filename);
+    }
+
     document.addEventListener('DOMContentLoaded', obtenerDatos);
+    
 </script>
 
 
