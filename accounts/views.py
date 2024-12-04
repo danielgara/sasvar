@@ -14,7 +14,8 @@ from django.utils import timezone
 from django.db.models.functions import TruncDate
 from django.core.exceptions import ValidationError
 import datetime
-
+from django.http import JsonResponse
+from .utils import predecir_residuo
 
 
 @login_required
@@ -275,3 +276,17 @@ def scanner_chart(request):
         {"name": "Gráfico del Escáner", "route": "accounts.scanner_chart"},
     ]
     return render(request, 'accounts/scanner_chart.html', {"viewData": viewData})
+
+
+def prediccion_residuo(request):
+    # Obtener el residuo actual desde los parámetros de consulta
+    waste_type_actual = request.GET.get('waste_type', None)
+    if not waste_type_actual:
+        return JsonResponse({'error': 'Se requiere un tipo de residuo actual'}, status=400)
+    
+    # Realizar la predicción
+    siguiente_residuo = predecir_residuo(waste_type_actual)
+    if siguiente_residuo:
+        return JsonResponse({'siguiente_residuo': siguiente_residuo})
+    else:
+        return JsonResponse({'mensaje': 'No hay suficientes datos para predecir el siguiente residuo'})
