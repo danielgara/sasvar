@@ -65,7 +65,7 @@
           style="padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px;">
 
         <button type="button" onclick="obtenerDatosDeUsuario()"
-          style="padding: 5px 15px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Aplicar
+          style="padding: 5px 15px; background-color: #a9e159	; color: rgb(255, 255, 255); border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Aplicar
           filtro</button>
       </div>
     </form>
@@ -128,14 +128,32 @@
               x: {
                 title: {
                   display: true,
-                  text: 'Fecha'
+                  text: 'Fecha',
+                  color: '#000'
+                },
+                ticks: {
+                  color: '#000' // Cambia el color de las etiquetas del eje Y
                 }
               },
               y: {
                 beginAtZero: true,
                 title: {
                   display: true,
-                  text: 'Cantidad de Escaneos'
+                  text: 'Cantidad de Escaneos',
+                  color: '#000'
+                },
+                ticks: {
+                  color: '#000' // Cambia el color de las etiquetas del eje Y
+                }
+              }
+            },
+            plugins: {
+              legend: {
+                labels: {
+                  color: '#000', // Cambia el color del texto en la leyenda (label)
+                  font: {
+                    size: 14 // Opcional: cambia el tamaño de la fuente
+                  }
                 }
               }
             }
@@ -169,14 +187,32 @@
               x: {
                 title: {
                   display: true,
-                  text: 'Fecha'
+                  text: 'Fecha',
+                  color: '#000'
+                },
+                ticks: {
+                  color: '#000' // Cambia el color de las etiquetas del eje Y
                 }
               },
               y: {
                 beginAtZero: true,
                 title: {
                   display: true,
-                  text: 'Cantidad de Escaneos'
+                  text: 'Cantidad de Escaneos',
+                  color: '#000'
+                },
+                ticks: {
+                  color: '#000' // Cambia el color de las etiquetas del eje Y
+                }
+              }
+            },
+            plugins: {
+              legend: {
+                labels: {
+                  color: '#000', // Cambia el color del texto en la leyenda (label)
+                  font: {
+                    size: 14 // Opcional: cambia el tamaño de la fuente
+                  }
                 }
               }
             }
