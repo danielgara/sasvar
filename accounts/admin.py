@@ -7,8 +7,8 @@ from django.http import HttpResponse
 from io import StringIO
 from django.db.models import Count
 
-@admin.register(User)
 
+@admin.register(User)
 class UserAdmin(DjangoUserAdmin):
     fieldsets = DjangoUserAdmin.fieldsets + (
         (
