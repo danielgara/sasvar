@@ -7,7 +7,6 @@ class User(AbstractUser):
     profile_picture = models.ImageField(upload_to='profile_pics', blank=True, null=True)
     experience_points = models.IntegerField(default=0)
 
-
 class Ranking(models.Model):
     name = models.CharField(max_length=100)
     level = models.PositiveIntegerField()
@@ -17,7 +16,6 @@ class Ranking(models.Model):
 
     def __str__(self):
         return str(self.level) + ' - ' + self.name
-
 
 class Code(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -32,7 +30,6 @@ class Code(models.Model):
     def __str__(self):
         return str(self.id) + ' - ' + str(self.user.username) + ' - ' + str(self.id_physical_location)
 
-
 class UserHistory(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     type_of_activity = models.CharField(max_length=50, choices=[('QR_SCAN', 'QR Scan')])
@@ -41,7 +38,6 @@ class UserHistory(models.Model):
 
     def __str__(self):
         return str(self.id) + ' - ' + str(self.user) + ' - ' + str(self.accumulated_points)
-
 
 class Waste(models.Model):
     iteration = models.IntegerField()
@@ -58,7 +54,6 @@ class Waste(models.Model):
 
     def __str__(self):
         return f"Iteration {self.iteration} - {self.date}"
-
 
 class ScanData(models.Model):
     waste_type = models.CharField(max_length=100)  

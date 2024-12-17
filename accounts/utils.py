@@ -6,6 +6,7 @@ from collections import defaultdict
 from .models import ScanData
 
 def decrypt_message(encrypted_message):
+
     key = settings.CRYPTO_KEY
     cipher = Fernet(key)
     decrypted_message = cipher.decrypt(encrypted_message.encode()).decode()
@@ -36,7 +37,6 @@ def calcular_probabilidades():
 
     # Convertir a DataFrame para análisis
     data = pd.DataFrame(list(scan_data.values('timestamp', 'waste_type')))
-    
     # Paso 2: Crear transiciones entre tipos de residuos
     transitions = defaultdict(list)
     previous_waste_type = None
@@ -51,17 +51,16 @@ def calcular_probabilidades():
         waste_type: pd.Series(next_types).value_counts(normalize=True).to_dict()
         for waste_type, next_types in transitions.items()
     }
-    
     return transition_probabilities
 
 def predecir_residuo(waste_type_actual):
+
     # Cargar las probabilidades de transición
     probabilities = calcular_probabilidades()
     
     # Verificar si hay datos para el residuo actual
     if waste_type_actual not in probabilities:
         return None  # No hay datos suficientes para predecir
-    
     # Devolver el residuo más probable
     return max(probabilities[waste_type_actual], key=probabilities[waste_type_actual].get)
 

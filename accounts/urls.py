@@ -44,5 +44,4 @@ urlpatterns = [
     path('grafico', views.get_scan_data, name='accounts.get_scan_data'),
     path('prediccion/', views.prediccion_residuo, name='prediccion_residuo'),
     path('user_stats/', views.get_user_scan_data, name='get_user_scan_data'),
- 
 ]

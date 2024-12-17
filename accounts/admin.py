@@ -6,9 +6,6 @@ import csv
 from django.http import HttpResponse
 from io import StringIO
 from django.db.models import Count
-from django.contrib import admin
-from .models import ScanData
-
 
 @admin.register(User)
 class UserAdmin(DjangoUserAdmin):
@@ -93,6 +90,7 @@ class CodeAdmin(ModelAdmin):
 @admin.register(UserHistory)
 class UserHistoryAdmin(ModelAdmin):
     def formfield_for_dbfield(self, db_field, **kwargs):
+        
         formfield = super().formfield_for_dbfield(db_field, **kwargs)
         if db_field.name == "user":
             formfield.label = "Usuario"
