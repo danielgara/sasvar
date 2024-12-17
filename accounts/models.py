@@ -8,6 +8,7 @@ class User(AbstractUser):
     experience_points = models.IntegerField(default=0)
 
 class Ranking(models.Model):
+
     name = models.CharField(max_length=100)
     level = models.PositiveIntegerField()
     from_points = models.PositiveIntegerField()
@@ -18,6 +19,7 @@ class Ranking(models.Model):
         return str(self.level) + ' - ' + self.name
 
 class Code(models.Model):
+
     created_at = models.DateTimeField(auto_now_add=True)
     id_physical_location = models.CharField(max_length=100)
     consecutive = models.PositiveIntegerField()
@@ -28,6 +30,7 @@ class Code(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
+
         return str(self.id) + ' - ' + str(self.user.username) + ' - ' + str(self.id_physical_location)
 
 class UserHistory(models.Model):
@@ -37,6 +40,7 @@ class UserHistory(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
+
         return str(self.id) + ' - ' + str(self.user) + ' - ' + str(self.accumulated_points)
 
 class Waste(models.Model):
@@ -53,9 +57,11 @@ class Waste(models.Model):
     success = models.IntegerField()
 
     def __str__(self):
+
         return f"Iteration {self.iteration} - {self.date}"
 
 class ScanData(models.Model):
+
     waste_type = models.CharField(max_length=100)  
     container = models.CharField(max_length=100)  
     timestamp = models.DateTimeField(auto_now_add=True) 

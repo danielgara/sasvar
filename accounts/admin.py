@@ -8,6 +8,7 @@ from io import StringIO
 from django.db.models import Count
 
 @admin.register(User)
+
 class UserAdmin(DjangoUserAdmin):
     fieldsets = DjangoUserAdmin.fieldsets + (
         (
@@ -86,6 +87,7 @@ class CodeAdmin(ModelAdmin):
         response = HttpResponse(f, content_type="text/csv")
         response["Content-Disposition"] = 'attachment; filename="codes.csv"'
         return response
+
 
 @admin.register(UserHistory)
 class UserHistoryAdmin(ModelAdmin):
