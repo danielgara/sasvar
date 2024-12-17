@@ -57,7 +57,7 @@ def calcular_probabilidades():
 
 def predecir_residuo(waste_type_actual):
     probabilities = calcular_probabilidades()
-    
+
     # Verificar si hay datos para el residuo actual
     if waste_type_actual not in probabilities:
         return None  # No hay datos suficientes para predecir
