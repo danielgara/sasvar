@@ -5,8 +5,8 @@ import pandas as pd
 from collections import defaultdict
 from .models import ScanData
 
-def decrypt_message(encrypted_message):
 
+def decrypt_message(encrypted_message):
     key = settings.CRYPTO_KEY
     cipher = Fernet(key)
     decrypted_message = cipher.decrypt(encrypted_message.encode()).decode()
@@ -28,6 +28,7 @@ def decrypt_message(encrypted_message):
             return code
     else:
         raise Exception()
+
 
 def calcular_probabilidades():
     # Paso 1: Extraer datos de la base de datos
@@ -53,9 +54,8 @@ def calcular_probabilidades():
     }
     return transition_probabilities
 
-def predecir_residuo(waste_type_actual):
 
-    # Cargar las probabilidades de transición
+def predecir_residuo(waste_type_actual):
     probabilities = calcular_probabilidades()
     
     # Verificar si hay datos para el residuo actual
@@ -63,4 +63,3 @@ def predecir_residuo(waste_type_actual):
         return None  # No hay datos suficientes para predecir
     # Devolver el residuo más probable
     return max(probabilities[waste_type_actual], key=probabilities[waste_type_actual].get)
-

@@ -13,8 +13,6 @@ from django.db.models import Count
 from django.utils import timezone
 from django.db.models.functions import TruncDate
 from django.core.exceptions import ValidationError
-import datetime
-from django.http import JsonResponse
 from .utils import predecir_residuo
 
 
@@ -220,7 +218,7 @@ def upload_json(request):
     else:
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
-#-------------------------------------------------------------------------------
+
 def get_scan_data(request):
     # Obtener y validar las fechas del rango
     start_date = request.GET.get('start_date')
@@ -266,6 +264,7 @@ def get_scan_data(request):
     except ValidationError:
         return JsonResponse({'error': 'Invalid date format'}, status=400)
 
+
 @login_required
 def scanner_chart(request):
     viewData = {}
@@ -283,14 +282,15 @@ def prediccion_residuo(request):
     waste_type_actual = request.GET.get('waste_type', None)
     if not waste_type_actual:
         return JsonResponse({'error': 'Se requiere un tipo de residuo actual'}, status=400)
-    
+
     # Realizar la predicción
     siguiente_residuo = predecir_residuo(waste_type_actual)
     if siguiente_residuo:
         return JsonResponse({'siguiente_residuo': siguiente_residuo})
     else:
         return JsonResponse({'mensaje': 'No hay suficientes datos para predecir el siguiente residuo'})
-    
+
+
 def get_user_scan_data(request):
     # Obtener el usuario logueado
     user = request.user

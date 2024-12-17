@@ -11,7 +11,6 @@ import base64
 from accounts.models import ScanData
 
 
-
 def index(request):
     viewData = {}
     viewData["title"] = "Escaneo"
@@ -62,6 +61,3 @@ def save(request):
         return JsonResponse({'status': 'success', 'message': 'Datos e imagen guardados correctamente'})
 
     return JsonResponse({'status': 'error', 'message': 'Método no permitido'}, status=405)
-
-
-
