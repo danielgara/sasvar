@@ -90,7 +90,7 @@ class CodeAdmin(ModelAdmin):
 @admin.register(UserHistory)
 class UserHistoryAdmin(ModelAdmin):
     def formfield_for_dbfield(self, db_field, **kwargs):
-        
+
         formfield = super().formfield_for_dbfield(db_field, **kwargs)
         if db_field.name == "user":
             formfield.label = "Usuario"
