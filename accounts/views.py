@@ -226,12 +226,12 @@ def get_scan_data(request):
 
     try:
         if start_date:
-            start_date = datetime.datetime.strptime(start_date, '%Y-%m-%d')
+            start_date = datetime.strptime(start_date, '%Y-%m-%d')
         else:
             start_date = timezone.now() - timedelta(days=7)  # Por defecto, hace una semana
 
         if end_date:
-            end_date = datetime.datetime.strptime(end_date, '%Y-%m-%d')
+            end_date = datetime.strptime(end_date, '%Y-%m-%d')
         else:
             end_date = timezone.now()  # Por defecto, hoy
 
@@ -257,11 +257,11 @@ def get_scan_data(request):
         return JsonResponse({
             'date_labels': date_labels,
             'date_values': date_values,
-            'waste_type_labels': waste_type_labels,  # Cambiado de 'container_labels' a 'waste_type_labels'
+            'waste_type_labels': waste_type_labels,
             'final_dates': final_dates,
-            'final_data': final_data  # Cambiado de 'final_data' para residuos
+            'final_data': final_data
         })
-    except ValidationError:
+    except ValueError:
         return JsonResponse({'error': 'Invalid date format'}, status=400)
 
 
@@ -300,13 +300,14 @@ def get_user_scan_data(request):
     end_date = request.GET.get('end_date')
 
     try:
+        # Convertir cadenas de fecha a objetos datetime o usar valores predeterminados
         if start_date:
-            start_date = datetime.datetime.strptime(start_date, '%Y-%m-%d')
+            start_date = datetime.strptime(start_date, '%Y-%m-%d')
         else:
             start_date = timezone.now() - timedelta(days=7)  # Por defecto, hace una semana
 
         if end_date:
-            end_date = datetime.datetime.strptime(end_date, '%Y-%m-%d')
+            end_date = datetime.strptime(end_date, '%Y-%m-%d')
         else:
             end_date = timezone.now()  # Por defecto, hoy
 
@@ -329,12 +330,14 @@ def get_user_scan_data(request):
             date_index = final_dates.index(entry['timestamp__date'].strftime('%Y-%m-%d'))
             final_data[entry['waste_type']][date_index] = entry['total']
 
+        # Respuesta en JSON
         return JsonResponse({
             'date_labels': date_labels,
             'date_values': date_values,
-            'waste_type_labels': waste_type_labels,  # Cambiado de 'container_labels' a 'waste_type_labels'
+            'waste_type_labels': waste_type_labels,
             'final_dates': final_dates,
-            'final_data': final_data  # Cambiado de 'final_data' para residuos
+            'final_data': final_data
         })
+
     except ValueError:
         return JsonResponse({'error': 'Invalid date format'}, status=400)
