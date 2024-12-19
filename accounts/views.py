@@ -3,11 +3,17 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import redirect
 from .forms import UserCreateForm
-from .models import User, Ranking, UserHistory, Waste
+from .models import User, Ranking, UserHistory, Waste, ScanData
 from django.db import IntegrityError
 from .utils import decrypt_message
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
+from django.http import JsonResponse
+from django.db.models import Count
+from django.utils import timezone
+from django.db.models.functions import TruncDate
+from django.core.exceptions import ValidationError
+from .utils import predecir_residuo
 
 
 @login_required
@@ -211,3 +217,127 @@ def upload_json(request):
             return redirect(request.META.get('HTTP_REFERER', '/'))
     else:
         return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+def get_scan_data(request):
+    # Obtener y validar las fechas del rango
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+
+    try:
+        if start_date:
+            start_date = datetime.strptime(start_date, '%Y-%m-%d')
+        else:
+            start_date = timezone.now() - timedelta(days=7)  # Por defecto, hace una semana
+
+        if end_date:
+            end_date = datetime.strptime(end_date, '%Y-%m-%d')
+        else:
+            end_date = timezone.now()  # Por defecto, hoy
+
+        # Filtrar datos por el rango de fechas
+        data = ScanData.objects.filter(timestamp__date__range=[start_date, end_date])
+
+        # Escaneos por fecha
+        date_data = data.annotate(date=TruncDate('timestamp')).values('date').annotate(total=Count('id')).order_by('date')
+        date_labels = [entry['date'].strftime('%Y-%m-%d') for entry in date_data]
+        date_values = [entry['total'] for entry in date_data]
+
+        # Escaneos por día y tipo de residuo
+        waste_type_data = data.values('timestamp__date', 'waste_type').annotate(total=Count('id')).order_by('timestamp__date')
+        waste_type_labels = list(data.values_list('waste_type', flat=True).distinct())  # Etiquetas de tipos de residuos
+        final_dates = sorted({entry['timestamp__date'].strftime('%Y-%m-%d') for entry in waste_type_data})
+
+        # Formato de datos para cada tipo de residuo
+        final_data = {waste_type: [0] * len(final_dates) for waste_type in waste_type_labels}
+        for entry in waste_type_data:
+            date_index = final_dates.index(entry['timestamp__date'].strftime('%Y-%m-%d'))
+            final_data[entry['waste_type']][date_index] = entry['total']
+
+        return JsonResponse({
+            'date_labels': date_labels,
+            'date_values': date_values,
+            'waste_type_labels': waste_type_labels,
+            'final_dates': final_dates,
+            'final_data': final_data
+        })
+    except ValueError:
+        return JsonResponse({'error': 'Invalid date format'}, status=400)
+
+
+@login_required
+def scanner_chart(request):
+    viewData = {}
+    viewData["title"] = "Gráfico del Escáner"
+    viewData["breadcrumbItems"] = [
+        {"name": "Inicio", "route": "home.index"},
+        {"name": "Mi Cuenta", "route": "accounts.index"},
+        {"name": "Gráfico del Escáner", "route": "accounts.scanner_chart"},
+    ]
+    return render(request, 'accounts/scanner_chart.html', {"viewData": viewData})
+
+
+def prediccion_residuo(request):
+    # Obtener el residuo actual desde los parámetros de consulta
+    waste_type_actual = request.GET.get('waste_type', None)
+    if not waste_type_actual:
+        return JsonResponse({'error': 'Se requiere un tipo de residuo actual'}, status=400)
+
+    # Realizar la predicción
+    siguiente_residuo = predecir_residuo(waste_type_actual)
+    if siguiente_residuo:
+        return JsonResponse({'siguiente_residuo': siguiente_residuo})
+    else:
+        return JsonResponse({'mensaje': 'No hay suficientes datos para predecir el siguiente residuo'})
+
+
+def get_user_scan_data(request):
+    # Obtener el usuario logueado
+    user = request.user
+
+    # Obtener y validar las fechas del rango
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+
+    try:
+        # Convertir cadenas de fecha a objetos datetime o usar valores predeterminados
+        if start_date:
+            start_date = datetime.strptime(start_date, '%Y-%m-%d')
+        else:
+            start_date = timezone.now() - timedelta(days=7)  # Por defecto, hace una semana
+
+        if end_date:
+            end_date = datetime.strptime(end_date, '%Y-%m-%d')
+        else:
+            end_date = timezone.now()  # Por defecto, hoy
+
+        # Filtrar datos por el rango de fechas y por el usuario logueado
+        data = ScanData.objects.filter(user=user, timestamp__date__range=[start_date, end_date])
+
+        # Escaneos por fecha para el usuario
+        date_data = data.annotate(date=TruncDate('timestamp')).values('date').annotate(total=Count('id')).order_by('date')
+        date_labels = [entry['date'].strftime('%Y-%m-%d') for entry in date_data]
+        date_values = [entry['total'] for entry in date_data]
+
+        # Escaneos por tipo de residuo y fecha para el usuario
+        waste_type_data = data.values('timestamp__date', 'waste_type').annotate(total=Count('id')).order_by('timestamp__date')
+        waste_type_labels = list(data.values_list('waste_type', flat=True).distinct())  # Etiquetas de tipos de residuos
+        final_dates = sorted({entry['timestamp__date'].strftime('%Y-%m-%d') for entry in waste_type_data})
+
+        # Formato de datos para cada tipo de residuo
+        final_data = {waste_type: [0] * len(final_dates) for waste_type in waste_type_labels}
+        for entry in waste_type_data:
+            date_index = final_dates.index(entry['timestamp__date'].strftime('%Y-%m-%d'))
+            final_data[entry['waste_type']][date_index] = entry['total']
+
+        # Respuesta en JSON
+        return JsonResponse({
+            'date_labels': date_labels,
+            'date_values': date_values,
+            'waste_type_labels': waste_type_labels,
+            'final_dates': final_dates,
+            'final_data': final_data
+        })
+
+    except ValueError:
+        return JsonResponse({'error': 'Invalid date format'}, status=400)

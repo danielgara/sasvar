@@ -2,6 +2,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
 
+
 urlpatterns = [
     path(
         "resetear-password/",
@@ -40,4 +41,7 @@ urlpatterns = [
     path('estadisticas', views.stats, name='accounts.stats'),
     path('', views.index, name='accounts.index'),
     path('cargar_json', views.upload_json, name='accounts.upload_json'),
+    path('grafico', views.get_scan_data, name='accounts.get_scan_data'),
+    path('prediccion/', views.prediccion_residuo, name='prediccion_residuo'),
+    path('user_stats/', views.get_user_scan_data, name='get_user_scan_data'),
 ]

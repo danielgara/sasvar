@@ -58,3 +58,13 @@ class Waste(models.Model):
 
     def __str__(self):
         return f"Iteration {self.iteration} - {self.date}"
+
+
+class ScanData(models.Model):
+    waste_type = models.CharField(max_length=100)
+    container = models.CharField(max_length=100)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.waste_type} - {self.container} - {self.timestamp}"

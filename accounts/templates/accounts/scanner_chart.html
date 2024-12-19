@@ -1,0 +1,37 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<h1>Gráfico de Escaneos</h1>
+<canvas id="scanChart" width="500" height="150"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Llamada a la API para obtener los datos
+    fetch("{% url 'accounts.get_scan_data' %}")
+        .then(response => response.json())
+        .then(data => {
+            const ctx = document.getElementById('scanChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.labels,  // Fechas
+                    datasets: [{
+                        label: 'Número de Escaneos',
+                        data: data.values,  // Valores de los escaneos
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',  // Color de fondo
+                        borderColor: 'rgba(54, 162, 235, 1)',  // Color de borde
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => console.error('Error al obtener los datos:', error));
+</script>
+{% endblock %}

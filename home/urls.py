@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from accounts.views import scanner_chart
 
 urlpatterns = [
     path('', views.index, name='home.index'),
@@ -12,4 +13,5 @@ urlpatterns = [
     path('aprende/modulo-3', views.l3, name='home.learn.l3'),
     path('encuentra', views.locate, name='home.locate'),
     path('experiencia', views.experience, name='home.experience'),
+    path('admin/grafico2', scanner_chart),
 ]
